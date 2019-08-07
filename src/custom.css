@@ -1,0 +1,20 @@
+.welcome-avatar {
+  height: 164px;
+}
+
+.welcome-icon {
+  height: 124px;
+}
+
+.small-icon {
+  height: 64px;
+}
+
+.half-colour-bg {
+  position: fixed;
+  top: 55%;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background-color: #dee2e6;
+}
