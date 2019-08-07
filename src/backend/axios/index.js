@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://merchant-dashboard-backend.herokuapp.com'
+const API_URL = 'https://jolt-app-api.herokuapp.com'
 
 const securedAxiosInstance = axios.create({
   baseURL: API_URL,
