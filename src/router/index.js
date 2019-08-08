@@ -5,6 +5,7 @@ import Signup from '@/components/Signup.vue'
 import Merchants from '@/components/merchants/Merchants.vue'
 import Promotions from '@/components/promotions/Promotions.vue'
 import AdminHome from '@/components/AdminHome.vue'
+import SearchMerchants from '@/components/merchants/SearchMerchants.vue'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ const router = new Router({
       path: '/admin-home',
       name: 'AdminHome',
       component: AdminHome
+    },
+    {
+      path: '/search-merchants',
+      name: 'SearchMerchants',
+      component: SearchMerchants
     }
   ]
 })

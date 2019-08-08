@@ -1,8 +1,10 @@
+<!-- jolt-dashboard/src/components/Signin.vue -->
+
 <template>
   <b-container>
     <b-row class="mt-5 mb-5">
       <b-col cols="12">
-        <img src="../assets/jolt-logo.png">
+        <b-img :src="require('../assets/jolt-logo.png')"></b-img>
       </b-col>
     </b-row>
 
@@ -25,6 +27,7 @@
                 v-model="email"
                 type="email"
                 required
+                autocomplete="true"
                 placeholder=""
               ></b-form-input>
             </b-form-group>
@@ -43,6 +46,7 @@
                 v-model="password"
                 type="password"
                 required
+                autocomplete="true"
               ></b-form-input>
             </b-form-group>
 
@@ -88,13 +92,16 @@ export default {
       }
       localStorage.csrf = response.data.csrf
       localStorage.signedIn = true
+      localStorage.userId = response.data.user_id
+      localStorage.payload = response.data.payload
       this.error = ''
       this.$router.replace('/admin-home')
     },
     signinFailed (error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || ''
+      this.error = (error.response && error.response.data && error.response.data.error) || 'Sign in failed'
       delete localStorage.csrf
       delete localStorage.signedIn
+      delete localStorage.userId
     },
     checkSignedIn () {
       if (localStorage.signedIn) {

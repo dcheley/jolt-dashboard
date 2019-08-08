@@ -1,4 +1,4 @@
-<!-- merchant-dashboard-frontend/src/components/merchants/Merchants.vue -->
+<!-- jolt-dashboard/src/components/merchants/Merchants.vue -->
 
 <template>
   <b-container>

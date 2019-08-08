@@ -1,4 +1,4 @@
-<!-- merchant-dashboard-frontend/src/components/promotions/Promotions.vue -->
+<!-- jolt-dashboard/src/components/promotions/Promotions.vue -->
 
 <template>
   <b-container>

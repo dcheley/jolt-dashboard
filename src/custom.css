@@ -10,6 +10,10 @@
   height: 64px;
 }
 
+.search-icon {
+  height: 35px;
+}
+
 .half-colour-bg {
   position: fixed;
   top: 55%;
