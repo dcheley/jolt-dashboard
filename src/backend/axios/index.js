@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://jolt-app-api.herokuapp.com'
+const API_URL = process.env.API_URL
 
 const securedAxiosInstance = axios.create({
   baseURL: API_URL,
