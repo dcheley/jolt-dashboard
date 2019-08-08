@@ -1,5 +1,5 @@
 {
-  "name": "merchant-dashboard-frontend",
+  "name": "jolt-dashboard",
   "version": "1.0.0",
   "description": "A Vue.js front-end app for a Merchant Dashboard connected to a Rails API backend app.",
   "author": "Daniel Cheley <cheleydan@gmail.com>",

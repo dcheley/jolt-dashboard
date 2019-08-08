@@ -8,7 +8,7 @@ import AdminHome from '@/components/AdminHome.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -38,3 +38,10 @@ export default new Router({
     }
   ]
 })
+
+const DEFAULT_TITLE = 'Jolt Dashboard'
+router.afterEach((to, from) => {
+  document.title = DEFAULT_TITLE
+})
+
+export default router
