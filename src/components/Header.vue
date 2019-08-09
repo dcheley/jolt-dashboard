@@ -16,6 +16,7 @@
             <b-nav-item to="/admin-home" class="" v-if="signedIn()">Home</b-nav-item>
             <b-nav-item to="/merchants" class="" v-if="signedIn()">Merchants</b-nav-item>
             <b-nav-item to="/promotions" class="" v-if="signedIn()">Promotions</b-nav-item>
+            <b-nav-item to="/search-merchants" class="" v-if="signedIn()">Search</b-nav-item>
             <b-nav-item to="#" @click.prevent="signOut" class="" v-if="signedIn()">Sign Out</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
@@ -42,6 +43,7 @@ export default {
         .then(response => {
           delete localStorage.csrf
           delete localStorage.signedIn
+          delete localStorage.userId
           this.$router.replace('/')
         })
         .catch(error => this.setError(error, 'Cannot sign out'))

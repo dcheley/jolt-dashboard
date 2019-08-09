@@ -2,12 +2,6 @@
 
 <template>
   <b-container>
-    <!-- <b-row class="mt-5">
-      <b-col cols="12">
-        <p class="">NAME OF INSTITUION</p>
-      </b-col>
-    </b-row> -->
-
     <div class="mt-4">
       <b-form @submit.prevent="addMerchant">
         <div class="text-danger mb-3" v-if="error">{{ error }}</div>
@@ -129,20 +123,44 @@
     </div>
 
     <b-list-group class="mb-5">
-      <b-list-group-item v-for="merchant in merchants" :key="merchant.id" :merchant="merchant">
+      <b-list-group-item v-for="merchant in merchants" :key="merchant.id" :merchant="merchant" class="p-0">
+        <div class="bg-light">
+          <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
 
-        <h4 class="mt-4 mb-4">
-          <img src="../../assets/bolt-black.svg" class="small-icon">
-          {{ merchant.name }}
-        </h4>
+          <b-row>
+            <b-col cols="12">
+              <h4 class="mt-4 mb-4">
+                {{ merchant.name }}
+              </h4>
+            </b-col>
+          </b-row>
 
-        <b-button pill class="mb-4"
-        @click.prevent="editMerchant(merchant)">Edit</b-button>
+          <b-row class="text-break text-left ml-4">
+            <b-col cols="4" >
+              <p>{{ merchant.description }}</p>
+            </b-col>
+            <b-col cols="4">
+              <p class="ml-4">{{ merchant.address }}</p>
+              <p class="ml-4">{{ merchant.phone }}</p>
+            </b-col>
+            <b-col cols="4">
+              <p>{{ merchant.postal_code }}</p>
+              <p>{{ merchant.category }}</p>
+            </b-col>
+          </b-row>
 
-        <b-button pill class="mb-4 bg-danger"
-        @click.prevent="removeMerchant(merchant)">Delete</b-button>
+          <b-row>
+            <b-col cols="12" class="mt-3 mb-4">
+              <b-button pill
+              @click.prevent="editMerchant(merchant)">Edit</b-button>
 
-        <div v-if="merchant == editedMerchant">
+              <b-button pill class="bg-danger"
+              @click.prevent="removeMerchant(merchant)">Delete</b-button>
+            </b-col>
+          </b-row>
+        </div>
+
+        <div v-if="merchant == editedMerchant" class="mt-4">
           <b-form action="" @submit.prevent="updateMerchant(merchant)">
             <div class="text-danger mb-3" v-if="error">{{ error }}</div>
 
@@ -161,7 +179,7 @@
               <b-col cols="3"></b-col>
             </b-row>
 
-            <b-row>
+            <b-row class="ml-4 mr-4">
               <b-col cols="4">
                 <b-form-group
                   id="update-merchant-description"
@@ -236,8 +254,10 @@
             </b-row>
 
             <b-row>
-              <b-col cols="12">
-                <b-button pill type="submit" value="Update" class="mb-3">Update</b-button>
+              <b-col cols="12" class="mb-4">
+                <b-button pill type="submit" value="Update">Update</b-button>
+                <b-button pill type="button" value="Cancel" class="bg-danger"
+                @click.prevent="closeForm(merchant)">Cancel</b-button>
               </b-col>
             </b-row>
           </b-form>
@@ -298,6 +318,9 @@ export default {
       this.editedMerchant = ''
       this.$http.secured.patch(`/api/v1/merchants/${merchant.id}`, { merchant: { name: merchant.name, description: merchant.description, address: merchant.address, phone: merchant.phone, postal_code: merchant.postal_code, category: merchant.category } })
         .catch(error => this.setError(error, 'Cannot update merchant'))
+    },
+    closeForm (merchant) {
+      this.editedMerchant = ''
     }
   }
 }

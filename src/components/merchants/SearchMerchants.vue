@@ -9,7 +9,7 @@
             <b-input-group-prepend>
               <b-img :src="require('../../assets/search.svg')" class="search-icon"></b-img>
             </b-input-group-prepend>
-            <b-form-input v-model="merchants" class="rounded-pill" placeholder=""></b-form-input>
+            <b-form-input class="rounded-pill" placeholder=""></b-form-input>
             <!-- <b-button class="" type="submit">Search</b-button> -->
           </b-input-group>
         </b-col>
@@ -27,7 +27,6 @@ export default {
   name: 'SearchMerchants',
   data () {
     return {
-      merchants: [],
       fields: [
         {
           key: 'name',
@@ -61,7 +60,8 @@ export default {
           key: 'users',
           sortable: true
         }
-      ]
+      ],
+      merchants: []
     }
   },
   created () {
