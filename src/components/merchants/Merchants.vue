@@ -123,7 +123,7 @@
     </div>
 
     <b-list-group class="mb-5">
-      <b-list-group-item v-for="merchant in merchants" :key="merchant.id" :merchant="merchant" class="p-0">
+      <b-list-group-item v-for="merchant in merchants" :key="merchant.id" :merchant="merchant" class="mt-3 p-0">
         <div class="bg-light">
           <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
 
@@ -276,7 +276,8 @@ export default {
       merchants: [],
       newMerchant: [],
       error: '',
-      editedMerchant: ''
+      editedMerchant: '',
+      toastCount: 0
     }
   },
   created () {
@@ -301,6 +302,13 @@ export default {
         .then(response => {
           this.merchants.push(response.data)
           this.newMerchant = ''
+          this.toastCount++
+          this.$bvToast.toast(`Scroll down to view Merchant's details`, {
+            title: 'Success!',
+            autoHideDelay: 5000,
+            appendToast: true,
+            variant: 'success',
+          })
         })
         .catch(error => this.setError(error, 'Cannot create merchant'))
     },
