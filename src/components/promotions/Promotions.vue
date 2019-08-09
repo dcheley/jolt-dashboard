@@ -199,7 +199,8 @@ export default {
       promotions: [],
       newPromotion: [],
       error: '',
-      editedPromotion: ''
+      editedPromotion: '',
+      toastCount: 0
     }
   },
   created () {
@@ -238,6 +239,13 @@ export default {
         .then(response => {
           this.promotions.push(response.data)
           this.newPromotion = ''
+          this.toastCount++
+          this.$bvToast.toast(`Scroll down to view Promotion's details`, {
+            title: 'Success!',
+            autoHideDelay: 5000,
+            appendToast: true,
+            variant: 'success',
+          })
         })
         .catch(error => this.setError(error, 'Cannot create promotion'))
     },
