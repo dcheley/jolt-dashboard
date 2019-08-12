@@ -90,26 +90,46 @@
     </div>
 
     <b-list-group class="mb-5">
-      <b-list-group-item v-for="promotion in promotions" :key="promotion.id" :promotion="promotion">
+      <b-list-group-item v-for="promotion in promotions" :key="promotion.id" :promotion="promotion" class="mt-3 p-0">
+        <div class="bg-light">
+          <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
 
-        <h4 class="mt-4 mb-4">
-          <img src="../../assets/bolt-black.svg" class="small-icon">
-          {{ promotion.title }} &mdash; {{ promotion.expiary_date }}
-        </h4>
+          <b-row>
+            <b-col cols="12">
+              <h4 class="mt-4 mb-4">
+                {{ promotion.title }} &mdash; {{ getMerchant(promotion) }}
+              </h4>
+            </b-col>
+          </b-row>
 
-        <p class="">{{ getMerchant(promotion) }}</p>
+          <b-row class="text-break text-left ml-5">
+            <b-col cols="4">
+              <p class=""><b>Belongs to:</b>&nbsp; {{ getMerchant(promotion) }}</p>
+            </b-col>
+            <b-col cols="4">
+              <p class=""><b>$</b>{{ promotion.dollar_value }}0</p>
+            </b-col>
+            <b-col cols="4">
+              <p class=""><b>Expires:</b>&nbsp; {{ promotion.expiary_date }}</p>
+            </b-col>
+          </b-row>
 
-        <b-button pill class="mb-4"
-        @click.prevent="editPromotion(promotion)">Edit</b-button>
+          <b-row>
+            <b-col cols="12" class="mt-3 mb-4">
+              <b-button pill
+              @click.prevent="editPromotion(promotion)">Edit</b-button>
 
-        <b-button pill class="mb-4 bg-danger"
-        @click.prevent="removePromotion(promotion)">Delete</b-button>
+              <b-button pill class="bg-danger"
+              @click.prevent="removePromotion(promotion)">Delete</b-button>
+            </b-col>
+          </b-row>
+        </div>
 
         <div v-if="promotion == editedPromotion">
           <b-form action="" @submit.prevent="updatePromotion(promotion)">
             <div class="text-danger mb-3" v-if="error">{{ error }}</div>
 
-            <b-row>
+            <b-row class="ml-4 mr-4">
               <b-col cols="6">
                 <b-form-group
                   id="update-group-title"
@@ -140,7 +160,7 @@
                   <b-form-input
                     id="update_expiary_date"
                     v-model="promotion.expiary_date"
-                    type="expiary_date"
+                    type="date"
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -177,9 +197,13 @@
                   </b-form-select>
                 </b-form-group>
               </b-col>
+            </b-row>
 
-              <b-col cols="12">
-                <b-button pill type="submit" value="Update" class="mb-3"></b-button>
+            <b-row>
+              <b-col cols="12" class="mb-3">
+                <b-button pill type="submit" value="Update">Update</b-button>
+                <b-button pill type="button" value="Cancel" class="bg-danger"
+                @click.prevent="closeForm(promotion)">Cancel</b-button>
               </b-col>
             </b-row>
           </b-form>
@@ -244,7 +268,7 @@ export default {
             title: 'Success!',
             autoHideDelay: 5000,
             appendToast: true,
-            variant: 'success',
+            variant: 'success'
           })
         })
         .catch(error => this.setError(error, 'Cannot create promotion'))
@@ -263,6 +287,9 @@ export default {
       this.editedPromotion = ''
       this.$http.secured.patch(`/api/v1/promotions/${promotion.id}`, { promotion: { title: promotion.title, dollar_value: promotion.dollar_value, expiary_date: promotion.expiary_date, merchant_id: promotion.merchant } })
         .catch(error => this.setError(error, 'Cannot update promotion'))
+    },
+    closeForm (promotion) {
+      this.editedPromotion = ''
     }
   }
 }

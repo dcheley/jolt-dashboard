@@ -307,7 +307,7 @@ export default {
             title: 'Success!',
             autoHideDelay: 5000,
             appendToast: true,
-            variant: 'success',
+            variant: 'success'
           })
         })
         .catch(error => this.setError(error, 'Cannot create merchant'))
