@@ -151,6 +151,8 @@
 
           <b-row>
             <b-col cols="12" class="mt-3 mb-4">
+              <b-link v-bind:href="'/merchants/' + merchant.id"><img src="../../assets/info.svg" class="button-icon"></b-link>
+
               <b-button pill
               @click.prevent="editMerchant(merchant)">Edit</b-button>
 

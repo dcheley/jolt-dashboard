@@ -15,7 +15,7 @@
             <b-nav-item to="/signup" class="" v-if="!signedIn()">Sign Up</b-nav-item>
             <b-nav-item to="/admin-home" class="" v-if="signedIn()">Home</b-nav-item>
             <b-nav-item to="/merchants" class="" v-if="signedIn()">Merchants</b-nav-item>
-            <b-nav-item to="/promotions" class="" v-if="signedIn()">Promotions</b-nav-item>
+            <b-nav-item to="/offers" class="" v-if="signedIn()">Offers</b-nav-item>
             <b-nav-item to="/search-merchants" class="" v-if="signedIn()">Search</b-nav-item>
             <b-nav-item to="#" @click.prevent="signOut" class="" v-if="signedIn()">Sign Out</b-nav-item>
           </b-navbar-nav>

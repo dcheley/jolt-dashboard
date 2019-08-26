@@ -3,9 +3,11 @@ import Router from 'vue-router'
 import Signin from '@/components/Signin.vue'
 import Signup from '@/components/Signup.vue'
 import Merchants from '@/components/merchants/Merchants.vue'
-import Promotions from '@/components/promotions/Promotions.vue'
+import Offers from '@/components/offers/Offers.vue'
 import AdminHome from '@/components/AdminHome.vue'
 import SearchMerchants from '@/components/merchants/SearchMerchants.vue'
+import MerchantProfile from '@/components/merchants/MerchantProfile.vue'
+import MerchantAnalytics from '@/components/merchants/MerchantAnalytics.vue'
 
 Vue.use(Router)
 
@@ -28,9 +30,9 @@ const router = new Router({
       component: Merchants
     },
     {
-      path: '/promotions',
-      name: 'Promotions',
-      component: Promotions
+      path: '/offers',
+      name: 'Offers',
+      component: Offers
     },
     {
       path: '/admin-home',
@@ -41,6 +43,16 @@ const router = new Router({
       path: '/search-merchants',
       name: 'SearchMerchants',
       component: SearchMerchants
+    },
+    {
+      path: '/merchants/:id',
+      name: 'MerchantProfile',
+      component: MerchantProfile
+    },
+    {
+      path: '/merchants/analytics',
+      name: 'MerchantAnalytics',
+      component: MerchantAnalytics
     }
   ]
 })

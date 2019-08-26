@@ -10,8 +10,13 @@
   height: 64px;
 }
 
+.button-icon {
+  height: 40px;
+}
+
 .search-icon {
-  height: 35px;
+  height: 32px;
+  margin-top: 3px;
 }
 
 .half-colour-bg {

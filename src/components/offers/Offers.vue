@@ -1,15 +1,15 @@
-<!-- jolt-dashboard/src/components/promotions/Promotions.vue -->
+<!-- jolt-dashboard/src/components/offers/Offers.vue -->
 
 <template>
   <b-container>
     <b-row class="mt-5">
       <b-col cols="12">
-        <h3 class="">Add a new promotion</h3>
+        <h3 class="">Add a new offer</h3>
       </b-col>
     </b-row>
 
     <div class="">
-      <b-form action="" @submit.prevent="addPromotion">
+      <b-form action="" @submit.prevent="addOffer">
         <div class="text-danger mb-3" v-if="error">{{ error }}</div>
         <b-row>
           <b-col cols="6">
@@ -19,14 +19,14 @@
               label-cols-lg="3"
               label-align="left"
               label="Title"
-              label-for="promotion_title"
+              label-for="offer_title"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="promotion_title"
-                v-model="newPromotion.title"
+                id="offer_title"
+                v-model="newOffer.title"
                 autofocus autocomplete="off"
-                placeholder="Type a promotion title"
+                placeholder="Type a offer title"
                 required
               ></b-form-input>
             </b-form-group>
@@ -41,8 +41,8 @@
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="promotion_dollar_value"
-                v-model="newPromotion.dollar_value"
+                id="offer_dollar_value"
+                v-model="newOffer.dollar_value"
                 type="number"
               ></b-form-input>
             </b-form-group>
@@ -55,12 +55,12 @@
               label-cols-lg="3"
               label-align="left"
               label="Expiary Date"
-              label-for="promotion_expiary_date"
+              label-for="offer_expiary_date"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="promotion_expiary_date"
-                v-model="newPromotion.expiary_date"
+                id="offer_expiary_date"
+                v-model="newOffer.expiary_date"
                 type="date"
               ></b-form-input>
             </b-form-group>
@@ -71,10 +71,10 @@
               label-cols-lg="3"
               label-align="left"
               label="Merchant"
-              label-for="promotion_merchant"
+              label-for="offer_merchant"
               class="mt-5 mb-5"
             >
-              <b-form-select id="merchant" class="select" v-model="newPromotion.merchant">
+              <b-form-select id="merchant" class="select" v-model="newOffer.merchant">
                 <option disabled value="">Select a merchant</option>
                 <option :value="merchant.id" v-for="merchant in merchants" :key="merchant.id">{{ merchant.name }}</option>
               </b-form-select>
@@ -83,50 +83,52 @@
 
           <b-col cols="12">
             <p class="">Don't see a merchant? <router-link class="" to="/merchants">Create one.</router-link></p>
-            <b-button pill type="submit" value="Add Promotion" class="mb-5">Add Promotion</b-button>
+            <b-button pill type="submit" value="Add Offer" class="mb-5">Add Offer</b-button>
           </b-col>
         </b-row>
       </b-form>
     </div>
 
     <b-list-group class="mb-5">
-      <b-list-group-item v-for="promotion in promotions" :key="promotion.id" :promotion="promotion" class="mt-3 p-0">
+      <b-list-group-item v-for="offer in offers" :key="offer.id" :offer="offer" class="mt-3 p-0">
         <div class="bg-light">
           <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
 
           <b-row>
             <b-col cols="12">
               <h4 class="mt-4 mb-4">
-                {{ promotion.title }} &mdash; {{ getMerchant(promotion) }}
+                {{ offer.title }} &mdash; {{ getMerchant(offer) }}
               </h4>
             </b-col>
           </b-row>
 
           <b-row class="text-break text-left ml-5">
             <b-col cols="4">
-              <p class=""><b>Belongs to:</b>&nbsp; {{ getMerchant(promotion) }}</p>
+              <p class=""><b>Belongs to:</b>&nbsp; {{ getMerchant(offer) }}</p>
             </b-col>
             <b-col cols="4">
-              <p class=""><b>$</b>{{ promotion.dollar_value }}0</p>
+              <p class=""><b>$</b>{{ offer.dollar_value }}0</p>
             </b-col>
             <b-col cols="4">
-              <p class=""><b>Expires:</b>&nbsp; {{ promotion.expiary_date }}</p>
+              <p class=""><b>Expires:</b>&nbsp; {{ offer.expiary_date }}</p>
             </b-col>
           </b-row>
 
           <b-row>
             <b-col cols="12" class="mt-3 mb-4">
+              <img src="../../assets/info.svg" class="button-icon">
+
               <b-button pill
-              @click.prevent="editPromotion(promotion)">Edit</b-button>
+              @click.prevent="editOffer(offer)">Edit</b-button>
 
               <b-button pill class="bg-danger"
-              @click.prevent="removePromotion(promotion)">Delete</b-button>
+              @click.prevent="removeOffer(offer)">Delete</b-button>
             </b-col>
           </b-row>
         </div>
 
-        <div v-if="promotion == editedPromotion">
-          <b-form action="" @submit.prevent="updatePromotion(promotion)">
+        <div v-if="offer == editedOffer">
+          <b-form action="" @submit.prevent="updateOffer(offer)">
             <div class="text-danger mb-3" v-if="error">{{ error }}</div>
 
             <b-row class="ml-4 mr-4">
@@ -143,7 +145,7 @@
                 >
                   <b-form-input
                     id="update_title"
-                    v-model="promotion.title"
+                    v-model="offer.title"
                     type="title"
                   ></b-form-input>
                 </b-form-group>
@@ -159,7 +161,7 @@
                 >
                   <b-form-input
                     id="update_expiary_date"
-                    v-model="promotion.expiary_date"
+                    v-model="offer.expiary_date"
                     type="date"
                   ></b-form-input>
                 </b-form-group>
@@ -177,7 +179,7 @@
                 >
                   <b-form-input
                     id="update_dollar_value"
-                    v-model="promotion.dollar_value"
+                    v-model="offer.dollar_value"
                     type="number"
                   ></b-form-input>
                 </b-form-group>
@@ -188,10 +190,10 @@
                   label-cols-lg="3"
                   label-align="left"
                   label="Merchant"
-                  label-for="promotion_merchant"
+                  label-for="offer_merchant"
                   class="mt-5 mb-5"
                 >
-                  <b-form-select id="merchant" class="select" v-model="promotion.merchant">
+                  <b-form-select id="merchant" class="select" v-model="offer.merchant">
                     <option disabled value="">Select a merchant</option>
                     <option :value="merchant.id" v-for="merchant in merchants" :key="merchant.id">{{ merchant.name }}</option>
                   </b-form-select>
@@ -203,7 +205,7 @@
               <b-col cols="12" class="mb-3">
                 <b-button pill type="submit" value="Update">Update</b-button>
                 <b-button pill type="button" value="Cancel" class="bg-danger"
-                @click.prevent="closeForm(promotion)">Cancel</b-button>
+                @click.prevent="closeForm(offer)">Cancel</b-button>
               </b-col>
             </b-row>
           </b-form>
@@ -216,14 +218,14 @@
 
 <script>
 export default {
-  name: 'Promotions',
+  name: 'Offers',
   data () {
     return {
       merchants: [],
-      promotions: [],
-      newPromotion: [],
+      offers: [],
+      newOffer: [],
       error: '',
-      editedPromotion: '',
+      editedOffer: '',
       toastCount: 0
     }
   },
@@ -231,8 +233,8 @@ export default {
     if (!localStorage.signedIn) {
       this.$router.replace('/')
     } else {
-      this.$http.secured.get('/api/v1/promotions')
-        .then(response => { this.promotions = response.data })
+      this.$http.secured.get('/api/v1/offers')
+        .then(response => { this.offers = response.data })
         .catch(error => this.setError(error, 'Something went wrong'))
 
       this.$http.secured.get('/api/v1/merchants')
@@ -244,52 +246,52 @@ export default {
     setError (error, text) {
       this.error = (error.response && error.response.data && error.response.data.error) || text
     },
-    getMerchant (promotion) {
-      const promotionMerchantValues = this.merchants.filter(merchant => merchant.id === promotion.merchant_id)
+    getMerchant (offer) {
+      const offerMerchantValues = this.merchants.filter(merchant => merchant.id === offer.merchant_id)
       let merchant
 
-      promotionMerchantValues.forEach(function (element) {
+      offerMerchantValues.forEach(function (element) {
         merchant = element.name
       })
 
       return merchant
     },
-    addPromotion () {
-      const value = this.newPromotion
+    addOffer () {
+      const value = this.newOffer
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/promotions/', { promotion: { title: this.newPromotion.title, dollar_value: this.newPromotion.dollar_value, expiary_date: this.newPromotion.expiary_date, merchant_id: this.newPromotion.merchant } })
+      this.$http.secured.post('/api/v1/offers/', { offer: { title: this.newOffer.title, dollar_value: this.newOffer.dollar_value, expiary_date: this.newOffer.expiary_date, merchant_id: this.newOffer.merchant } })
         .then(response => {
-          this.promotions.push(response.data)
-          this.newPromotion = ''
+          this.offers.push(response.data)
+          this.newOffer = ''
           this.toastCount++
-          this.$bvToast.toast(`Scroll down to view Promotion's details`, {
+          this.$bvToast.toast(`Scroll down to view Offer's details`, {
             title: 'Success!',
             autoHideDelay: 5000,
             appendToast: true,
             variant: 'success'
           })
         })
-        .catch(error => this.setError(error, 'Cannot create promotion'))
+        .catch(error => this.setError(error, 'Cannot create offer'))
     },
-    removePromotion (promotion) {
-      this.$http.secured.delete(`/api/v1/promotions/${promotion.id}`)
+    removeOffer (offer) {
+      this.$http.secured.delete(`/api/v1/offers/${offer.id}`)
         .then(response => {
-          this.promotions.splice(this.promotions.indexOf(promotion), 1)
+          this.offers.splice(this.offers.indexOf(offer), 1)
         })
-        .catch(error => this.setError(error, 'Cannot delete promotion'))
+        .catch(error => this.setError(error, 'Cannot delete offer'))
     },
-    editPromotion (promotion) {
-      this.editedPromotion = promotion
+    editOffer (offer) {
+      this.editedOffer = offer
     },
-    updatePromotion (promotion) {
-      this.editedPromotion = ''
-      this.$http.secured.patch(`/api/v1/promotions/${promotion.id}`, { promotion: { title: promotion.title, dollar_value: promotion.dollar_value, expiary_date: promotion.expiary_date, merchant_id: promotion.merchant } })
-        .catch(error => this.setError(error, 'Cannot update promotion'))
+    updateOffer (offer) {
+      this.editedOffer = ''
+      this.$http.secured.patch(`/api/v1/offers/${offer.id}`, { offer: { title: offer.title, dollar_value: offer.dollar_value, expiary_date: offer.expiary_date, merchant_id: offer.merchant } })
+        .catch(error => this.setError(error, 'Cannot update offer'))
     },
-    closeForm (promotion) {
-      this.editedPromotion = ''
+    closeForm (offer) {
+      this.editedOffer = ''
     }
   }
 }

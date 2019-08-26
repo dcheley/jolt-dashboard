@@ -12,17 +12,17 @@
     <div class="half-colour-bg">
       <b-row class="mt-5">
         <b-col cols="6 mt-3" class="border-right border-dark">
-          <router-link to="/merchants" class="text-dark text-decoration-none">
+          <b-link to="/merchants" class="text-dark">
             <img src="../assets/plus.svg" class="welcome-icon">
             <p class="mt-3">ADD MERCHANT</p>
-          </router-link>
+          </b-link>
         </b-col>
 
         <b-col cols="6 mt-3">
-          <router-link to="/search-merchants" class="text-dark text-decoration-none">
+          <b-link to="/search-merchants" class="text-dark">
             <img src="../assets/search.svg" class="welcome-icon">
             <p class="mt-3">SEARCH MERCHANT</p>
-          </router-link>
+          </b-link>
         </b-col>
       </b-row>
     </div>

@@ -4,11 +4,11 @@
   <b-container>
     <div class="mt-5">
       <b-row>
-        <b-col cols="6">
+        <b-col cols="8">
           <b-input-group>
-            <b-input-group-prepend>
-              <b-img :src="require('../../assets/search.svg')" class="search-icon"></b-img>
-            </b-input-group-prepend>
+            <!-- <b-input-group-prepend> -->
+              <span class="rounded-pill"><b-img :src="require('../../assets/search.svg')" class="search-icon"></b-img></span>
+            <!-- </b-input-group-prepend> -->
             <b-form-input class="rounded-pill" placeholder=""></b-form-input>
             <!-- <b-button class="" type="submit"
             @click=seachMerchants(`param`)>Search</b-button> -->
