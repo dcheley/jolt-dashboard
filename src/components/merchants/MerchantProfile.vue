@@ -29,7 +29,7 @@
         </div>
       </b-col>
       <b-col cols="2">
-        <b-link href="/merchants/analytics" class="text-dark">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/analytics'" class="text-dark">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/line-chart.svg')" class="small-icon"></b-img>
             <p class="mt-2">ANALYTICS</p>

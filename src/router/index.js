@@ -8,6 +8,7 @@ import AdminHome from '@/components/AdminHome.vue'
 import SearchMerchants from '@/components/merchants/SearchMerchants.vue'
 import MerchantProfile from '@/components/merchants/MerchantProfile.vue'
 import MerchantAnalytics from '@/components/merchants/MerchantAnalytics.vue'
+import MerchantOffers from '@/components/merchants/MerchantOffers.vue'
 
 Vue.use(Router)
 
@@ -50,9 +51,14 @@ const router = new Router({
       component: MerchantProfile
     },
     {
-      path: '/merchants/analytics',
+      path: '/merchants/:id/analytics',
       name: 'MerchantAnalytics',
       component: MerchantAnalytics
+    },
+    {
+      path: '/merchants/:id/offers',
+      name: 'MerchantOffers',
+      component: MerchantOffers
     }
   ]
 })

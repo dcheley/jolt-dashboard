@@ -27,3 +27,8 @@
   height: 45%;
   background-color: #dee2e6;
 }
+
+#bar-chart {
+  margin: 50px auto;
+  width: 90% !important;
+}
