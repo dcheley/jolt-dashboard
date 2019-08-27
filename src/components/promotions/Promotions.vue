@@ -64,27 +64,50 @@
                 type="date"
               ></b-form-input>
             </b-form-group>
+
+            <b-form-group
+              id="input-group-category"
+              label-cols-sm="4"
+              label-cols-lg="3"
+              label-align="left"
+              label="Expiary Date"
+              label-for="promotion_category"
+              class="mt-5 mb-5"
+            >
+              <b-form-input
+                id="promotion_category"
+                v-model="newPromotion.category"
+                type="date"
+              ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
+
+        <b-col cols="12">
+          <b-button pill type="submit" value="Add Promotion" class="mb-5">Add Promotion</b-button>
+        </b-col>
       </b-form>
     </div>
 
+    <h3>{{ merchant.name }}'s Promotions</h3>
+
     <b-list-group class="mb-5">
       <b-list-group-item v-for="promotion in promotions" :key="promotion.id" :promotion="promotion" class="mt-3 p-0">
+
         <div class="bg-light">
           <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
 
           <b-row>
             <b-col cols="12">
               <h4 class="mt-4 mb-4">
-                {{ promotion.title }} &mdash; {{ getMerchant(promotion) }}
+                {{ promotion.title }}
               </h4>
             </b-col>
           </b-row>
 
           <b-row class="text-break text-left ml-5">
             <b-col cols="4">
-              <p class=""><b>Belongs to:</b>&nbsp; {{ getMerchant(promotion) }}</p>
+              <p class=""><b>Category:</b>&nbsp; {{ promotion.category }}</p>
             </b-col>
             <b-col cols="4">
               <p class=""><b>$</b>{{ promotion.dollar_value }}0</p>
@@ -163,18 +186,18 @@
                 </b-form-group>
 
                 <b-form-group
-                  id="update-group-merchant"
+                  id="update-group-category"
                   label-cols-sm="4"
                   label-cols-lg="3"
                   label-align="left"
-                  label="Merchant"
-                  label-for="promotion_merchant"
+                  label="Category"
+                  label-for="promotion_category"
                   class="mt-5 mb-5"
                 >
-                  <b-form-select id="merchant" class="select" v-model="promotion.merchant">
-                    <option disabled value="">Select a merchant</option>
-                    <option :value="merchant.id" v-for="merchant in merchants" :key="merchant.id">{{ merchant.name }}</option>
-                  </b-form-select>
+                  <b-form-input
+                    id="update_category"
+                    v-model="promotion.category"
+                  ></b-form-input>
                 </b-form-group>
               </b-col>
             </b-row>
@@ -231,7 +254,7 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/promotions/', { promotion: { title: this.newPromotion.title, dollar_value: this.newPromotion.dollar_value, expiary_date: this.newPromotion.expiary_date, merchant_id: this.newPromotion.merchant } })
+      this.$http.secured.post('/api/v1/promotions/', { promotion: { title: this.newPromotion.title, dollar_value: this.newPromotion.dollar_value, expiary_date: this.newPromotion.expiary_date, category: this.newPromotion.category, merchant_id: this.newPromotion.merchant } })
         .then(response => {
           this.promotions.push(response.data)
           this.newPromotion = ''
@@ -277,7 +300,7 @@ export default {
     },
     updatePromotion (promotion) {
       this.editedPromotion = ''
-      this.$http.secured.patch(`/api/v1/promotions/${promotion.id}`, { promotion: { title: promotion.title, dollar_value: promotion.dollar_value, expiary_date: promotion.expiary_date, merchant_id: promotion.merchant } })
+      this.$http.secured.patch(`/api/v1/promotions/${promotion.id}`, { promotion: { title: promotion.title, dollar_value: promotion.dollar_value, expiary_date: promotion.expiary_date, category: promotion.category, merchant_id: promotion.merchant } })
         .catch(error => this.setError(error, 'Cannot update promotion'))
     },
     closeForm (promotion) {
