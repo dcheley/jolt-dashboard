@@ -151,13 +151,13 @@
 
           <b-row>
             <b-col cols="12" class="mt-3 mb-4">
-              <b-link v-bind:href="'/merchants/' + merchant.id"><img src="../../assets/info.svg" class="button-icon"></b-link>
+              <b-link v-bind:href="'/merchants/' + merchant.id"><img src="../../assets/info.svg" class="button-icon #6f42c1;"></b-link>
 
               <b-button pill
               @click.prevent="editMerchant(merchant)">Edit</b-button>
 
               <b-button pill class="bg-danger"
-              @click.prevent="removeMerchant(merchant)">Delete</b-button>
+              @click.prevent="confirmDelete(merchant)">Delete</b-button>
             </b-col>
           </b-row>
         </div>
@@ -279,7 +279,8 @@ export default {
       newMerchant: [],
       error: '',
       editedMerchant: '',
-      toastCount: 0
+      toastCount: 0,
+      boxOne: ''
     }
   },
   created () {
@@ -320,6 +321,26 @@ export default {
           this.merchants.splice(this.merchants.indexOf(merchant), 1)
         })
         .catch(error => this.setError(error, 'Cannot delete merchant'))
+    },
+    confirmDelete (merchant) {
+      this.boxOne = ''
+      this.$bvModal.msgBoxConfirm('Are you sure you want to delete this merchant?', {
+        title: 'Please Confirm',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+        .then(value => {
+          this.boxOne = value
+          if (this.boxOne === true) {
+            this.removeMerchant(merchant)
+          }
+        })
     },
     editMerchant (merchant) {
       this.editedMerchant = merchant

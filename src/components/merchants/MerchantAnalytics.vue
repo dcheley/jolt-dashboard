@@ -12,7 +12,7 @@ export default {
       datasets: [
         {
           label: 'Analytics',
-          backgroundColor: ['#9370DB', '#8A2BE2', '#9400D3', '#9932CC', '#8B008B'],
+          backgroundColor: ['#9370DB', '#8A2BE2', '#6f42c1', '#9932CC', '#8B008B'],
           data: [40, 20, 12, 39, 15]
         }
       ]

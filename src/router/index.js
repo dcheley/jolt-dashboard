@@ -8,7 +8,8 @@ import AdminHome from '@/components/AdminHome.vue'
 import SearchMerchants from '@/components/merchants/SearchMerchants.vue'
 import MerchantProfile from '@/components/merchants/MerchantProfile.vue'
 import MerchantAnalytics from '@/components/merchants/MerchantAnalytics.vue'
-import MerchantOffers from '@/components/merchants/MerchantOffers.vue'
+import MerchantOffers from '@/components/offers/MerchantOffers.vue'
+import Promotions from '@/components/promotions/Promotions.vue'
 
 Vue.use(Router)
 
@@ -59,6 +60,11 @@ const router = new Router({
       path: '/merchants/:id/offers',
       name: 'MerchantOffers',
       component: MerchantOffers
+    },
+    {
+      path: '/merchants/:id/promotions',
+      name: 'Promotions',
+      component: Promotions
     }
   ]
 })

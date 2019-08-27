@@ -21,40 +21,44 @@
     </b-row>
 
     <b-row>
-      <b-col cols="1"></b-col>
-      <b-col cols="2">
-        <div class="border border-dark pt-3">
-          <b-img :src="require('../../assets/calendar.svg')" class="small-icon"></b-img>
-          <p class="mt-2">SCHEDULING</p>
-        </div>
+      <b-col sm="0" md="1"></b-col>
+      <b-col sm="4" md="2">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/offers'" class="purple text-decoration-none">
+          <div class="border border-dark pt-3">
+            <b-img :src="require('../../assets/calendar.svg')" class="small-icon"></b-img>
+            <p class="mt-2">SCHEDULING</p>
+          </div>
+        </b-link>
       </b-col>
-      <b-col cols="2">
-        <b-link v-bind:href="'/merchants/' + merchant.id + '/analytics'" class="text-dark">
+      <b-col sm="4" md="2">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/analytics'" class="purple text-decoration-none">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/line-chart.svg')" class="small-icon"></b-img>
             <p class="mt-2">ANALYTICS</p>
           </div>
         </b-link>
       </b-col>
-      <b-col cols="2">
-        <div class="border border-dark pt-3">
-          <b-img :src="require('../../assets/megaphone.svg')" class="small-icon"></b-img>
-          <p class="mt-2">OFFERS</p>
-        </div>
+      <b-col sm="4" md="2">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/promotions'" class="purple text-decoration-none">
+          <div class="border border-dark pt-3">
+            <b-img :src="require('../../assets/megaphone.svg')" class="small-icon"></b-img>
+            <p class="mt-2">PROMOTIONS</p>
+          </div>
+        </b-link>
       </b-col>
-      <b-col cols="2">
+      <b-col sm="4" md="2">
         <div class="border border-dark pt-3">
           <b-img :src="require('../../assets/money.svg')" class="small-icon"></b-img>
           <p class="mt-2">BILLING</p>
         </div>
       </b-col>
-      <b-col cols="2">
+      <b-col sm="4" md="2">
         <div class="border border-dark pt-3">
           <b-img :src="require('../../assets/feedback.svg')" class="small-icon"></b-img>
           <p class="mt-2">FEEDBACK</p>
         </div>
       </b-col>
-      <b-col cols="1"></b-col>
+      <b-col sm="0" md="1"></b-col>
     </b-row>
 
   </b-container>

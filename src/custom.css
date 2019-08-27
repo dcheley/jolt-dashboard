@@ -32,3 +32,11 @@
   margin: 50px auto;
   width: 90% !important;
 }
+
+.purple {
+  color: #9370DB;
+}
+
+.purple:hover {
+  color: #6f42c1;
+}
