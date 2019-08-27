@@ -15,6 +15,9 @@
             <b-nav-item to="/signup" class="" v-if="!signedIn()">Sign Up</b-nav-item>
             <b-nav-item to="/admin-home" class="" v-if="signedIn()">Home</b-nav-item>
             <b-nav-item to="/merchants" class="" v-if="signedIn()">Merchants</b-nav-item>
+            <b-nav-item-dropdown text="Profiles" v-if="signedIn()" v-for="merchant in merchants" :key="merchant.id" :merchant="merchant">
+              <b-dropdown-item v-bind:to="'/merchants/' + merchant.id" class="">{{ merchant.name }}</b-dropdown-item>
+            </b-nav-item-dropdown>
             <b-nav-item to="/offers" class="" v-if="signedIn()">Offers</b-nav-item>
             <b-nav-item to="/search-merchants" class="" v-if="signedIn()">Search</b-nav-item>
             <b-nav-item to="#" @click.prevent="signOut" class="" v-if="signedIn()">Sign Out</b-nav-item>
@@ -28,8 +31,19 @@
 <script>
 export default {
   name: 'Header',
+  data () {
+    return {
+      merchants: [],
+      error: ''
+    }
+  },
   created () {
     this.signedIn()
+    if (this.signedIn()) {
+      this.$http.secured.get('/api/v1/merchants')
+        .then(response => { this.merchants = response.data })
+        .catch(error => this.setError(error, 'Something went wrong'))
+    }
   },
   methods: {
     setError (error, text) {
