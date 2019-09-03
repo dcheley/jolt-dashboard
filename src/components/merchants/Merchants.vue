@@ -313,14 +313,14 @@ export default {
             variant: 'success'
           })
         })
-        .catch(error => this.setError(error, 'Cannot create merchant'))
+        .catch(error => this.setError(error, 'Failed to create merchant'))
     },
     removeMerchant (merchant) {
       this.$http.secured.delete(`/api/v1/merchants/${merchant.id}`)
         .then(response => {
           this.merchants.splice(this.merchants.indexOf(merchant), 1)
         })
-        .catch(error => this.setError(error, 'Cannot delete merchant'))
+        .catch(error => this.setError(error, 'Failed to delete merchant'))
     },
     confirmDelete (merchant) {
       this.boxOne = ''
@@ -348,7 +348,7 @@ export default {
     updateMerchant (merchant) {
       this.editedMerchant = ''
       this.$http.secured.patch(`/api/v1/merchants/${merchant.id}`, { merchant: { name: merchant.name, description: merchant.description, address: merchant.address, phone: merchant.phone, postal_code: merchant.postal_code, category: merchant.category } })
-        .catch(error => this.setError(error, 'Cannot update merchant'))
+        .catch(error => this.setError(error, 'Failed to update merchant'))
     },
     closeForm (merchant) {
       this.editedMerchant = ''

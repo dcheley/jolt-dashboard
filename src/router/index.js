@@ -12,6 +12,7 @@ import MerchantOffers from '@/components/offers/MerchantOffers.vue'
 import Promotions from '@/components/promotions/Promotions.vue'
 import PostFeedback from '@/components/feedback/PostFeedback.vue'
 import ViewFeedback from '@/components/feedback/ViewFeedback.vue'
+import Billing from '@/components/billing/Billing.vue'
 
 Vue.use(Router)
 
@@ -77,6 +78,11 @@ const router = new Router({
       path: '/view-feedback',
       name: 'ViewFeedback',
       component: ViewFeedback
+    },
+    {
+      path: '/merchants/:merchant_id/billing',
+      name: 'Billing',
+      component: Billing
     }
   ]
 })

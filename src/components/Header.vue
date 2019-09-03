@@ -67,7 +67,7 @@ export default {
           delete localStorage.userId
           this.$router.replace('/')
         })
-        .catch(error => this.setError(error, 'Cannot sign out'))
+        .catch(error => this.setError(error, 'Failed to sign out'))
     }
   }
 }

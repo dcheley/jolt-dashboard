@@ -52,14 +52,14 @@ export default {
             variant: 'success'
           })
         })
-        .catch(error => this.setError(error, 'Cannot create offer'))
+        .catch(error => this.setError(error, 'Failed to create offer'))
     },
     removeOffer (offer) {
       this.$http.secured.delete(`/api/v1/offers/${offer.id}`)
         .then(response => {
           this.offers.splice(this.offers.indexOf(offer), 1)
         })
-        .catch(error => this.setError(error, 'Cannot delete offer'))
+        .catch(error => this.setError(error, 'Failed to delete offer'))
     },
     confirmDelete (offer) {
       this.boxOne = ''
@@ -87,7 +87,7 @@ export default {
     updateOffer (offer) {
       this.editedOffer = ''
       this.$http.secured.patch(`/api/v1/offers/${offer.id}`, { offer: { title: offer.title, dollar_value: offer.dollar_value, expiary_date: offer.expiary_date, merchant_id: offer.merchant } })
-        .catch(error => this.setError(error, 'Cannot update offer'))
+        .catch(error => this.setError(error, 'Failed to update offer'))
     },
     closeForm (offer) {
       this.editedOffer = ''

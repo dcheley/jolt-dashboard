@@ -287,14 +287,14 @@ export default {
             variant: 'success'
           })
         })
-        .catch(error => this.setError(error, 'Cannot create promotion'))
+        .catch(error => this.setError(error, 'Failed to create promotion'))
     },
     removePromotion (promotion) {
       this.$http.secured.delete(`/api/v1/promotions/${promotion.id}`)
         .then(response => {
           this.promotions.splice(this.promotions.indexOf(promotion), 1)
         })
-        .catch(error => this.setError(error, 'Cannot delete promotion'))
+        .catch(error => this.setError(error, 'Failed to delete promotion'))
     },
     confirmDelete (promotion) {
       this.boxOne = ''
@@ -322,7 +322,7 @@ export default {
     updatePromotion (promotion) {
       this.editedPromotion = ''
       this.$http.secured.patch(`/api/v1/promotions/${promotion.id}`, { promotion: { title: promotion.title, dollar_value: promotion.dollar_value, expiary_date: promotion.expiary_date, category: promotion.category, merchant_id: promotion.merchant } })
-        .catch(error => this.setError(error, 'Cannot update promotion'))
+        .catch(error => this.setError(error, 'Failed to update promotion'))
     },
     closeForm (promotion) {
       this.editedPromotion = ''

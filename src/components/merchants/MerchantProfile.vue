@@ -47,10 +47,12 @@
         </b-link>
       </b-col>
       <b-col sm="4" md="2">
-        <div class="border border-dark pt-3">
-          <b-img :src="require('../../assets/money.svg')" class="small-icon"></b-img>
-          <p class="mt-2">BILLING</p>
-        </div>
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/billing'" class="purple text-decoration-none">
+          <div class="border border-dark pt-3">
+            <b-img :src="require('../../assets/money.svg')" class="small-icon"></b-img>
+            <p class="mt-2">BILLING</p>
+          </div>
+        </b-link>
       </b-col>
       <b-col sm="4" md="2">
         <b-link href="/view-feedback" class="purple text-decoration-none">
@@ -97,7 +99,7 @@ export default {
     updateMerchant (merchant) {
       this.editedMerchant = ''
       this.$http.secured.patch(`/api/v1/merchants/${merchant.id}`, { merchant: { name: merchant.name, description: merchant.description, address: merchant.address, phone: merchant.phone, postal_code: merchant.postal_code, category: merchant.category } })
-        .catch(error => this.setError(error, 'Cannot update merchant'))
+        .catch(error => this.setError(error, 'Failed to update merchant'))
     }
   }
 }
