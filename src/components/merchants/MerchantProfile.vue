@@ -53,10 +53,12 @@
         </div>
       </b-col>
       <b-col sm="4" md="2">
-        <div class="border border-dark pt-3">
-          <b-img :src="require('../../assets/feedback.svg')" class="small-icon"></b-img>
-          <p class="mt-2">FEEDBACK</p>
-        </div>
+        <b-link href="/view-feedback" class="purple text-decoration-none">
+          <div class="border border-dark pt-3">
+            <b-img :src="require('../../assets/feedback.svg')" class="small-icon"></b-img>
+            <p class="mt-2">FEEDBACK</p>
+          </div>
+        </b-link>
       </b-col>
       <b-col sm="0" md="1"></b-col>
     </b-row>

@@ -10,7 +10,8 @@ import MerchantProfile from '@/components/merchants/MerchantProfile.vue'
 import MerchantAnalytics from '@/components/merchants/MerchantAnalytics.vue'
 import MerchantOffers from '@/components/offers/MerchantOffers.vue'
 import Promotions from '@/components/promotions/Promotions.vue'
-import Feedback from '@/components/Feedback.vue'
+import PostFeedback from '@/components/feedback/PostFeedback.vue'
+import ViewFeedback from '@/components/feedback/ViewFeedback.vue'
 
 Vue.use(Router)
 
@@ -68,9 +69,14 @@ const router = new Router({
       component: Promotions
     },
     {
-      path: '/feedback',
-      name: 'Feedback',
-      component: Feedback
+      path: '/post-feedback',
+      name: 'PostFeedback',
+      component: PostFeedback
+    },
+    {
+      path: '/view-feedback',
+      name: 'ViewFeedback',
+      component: ViewFeedback
     }
   ]
 })
