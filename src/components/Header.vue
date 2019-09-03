@@ -15,8 +15,14 @@
             <b-nav-item to="/signup" class="" v-if="!signedIn()">Sign Up</b-nav-item>
             <b-nav-item to="/admin-home" class="" v-if="signedIn()">Home</b-nav-item>
             <b-nav-item to="/merchants" class="" v-if="signedIn()">Merchants</b-nav-item>
-            <b-nav-item-dropdown text="Profiles" v-if="signedIn()" v-for="merchant in merchants" :key="merchant.id" :merchant="merchant">
-              <b-dropdown-item v-bind:to="'/merchants/' + merchant.id" class="">{{ merchant.name }}</b-dropdown-item>
+            <b-nav-item-dropdown text="Profiles" v-if="signedIn()">
+              <b-dropdown-item v-for="merchant in merchants"
+                :key="merchant.id"
+                :merchant="merchant"
+                v-bind:to="'/merchants/' + merchant.id"
+                class="">
+                {{ merchant.name }}
+              </b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item to="/offers" class="" v-if="signedIn()">Offers</b-nav-item>
             <b-nav-item to="/search-merchants" class="" v-if="signedIn()">Search</b-nav-item>

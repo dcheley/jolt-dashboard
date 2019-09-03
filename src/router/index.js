@@ -10,6 +10,7 @@ import MerchantProfile from '@/components/merchants/MerchantProfile.vue'
 import MerchantAnalytics from '@/components/merchants/MerchantAnalytics.vue'
 import MerchantOffers from '@/components/offers/MerchantOffers.vue'
 import Promotions from '@/components/promotions/Promotions.vue'
+import Feedback from '@/components/Feedback.vue'
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ const router = new Router({
       path: '/merchants/:id/promotions',
       name: 'Promotions',
       component: Promotions
+    },
+    {
+      path: '/feedback',
+      name: 'Feedback',
+      component: Feedback
     }
   ]
 })

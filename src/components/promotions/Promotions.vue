@@ -2,6 +2,17 @@
 
 <template>
   <b-container>
+    <h3 class="mt-5">{{ merchant.name }}'s Promotions</h3>
+
+    <hooper :itemsToShow="3" :infiniteScroll="true" class="mt-5 mb-5">
+      <slide v-for="(promotion, indx) in promotions" :key="indx" :index="indx" class="bg-light border-left border-right border-white">
+        <h5 class="mt-4">{{ promotion.title }}</h5>
+        <p><b>$</b>{{ promotion.dollar_value }}0</p>
+        <p><b>Category:</b> {{ promotion.category }}</p>
+        <p><b>Expires:</b> {{ promotion.expiary_date }}</p>
+      </slide>
+    </hooper>
+
     <b-row class="mt-5">
       <b-col cols="12">
         <h3 class="">Add a new promotion</h3>
@@ -70,14 +81,13 @@
               label-cols-sm="4"
               label-cols-lg="3"
               label-align="left"
-              label="Expiary Date"
+              label="Category"
               label-for="promotion_category"
               class="mt-5 mb-5"
             >
               <b-form-input
                 id="promotion_category"
                 v-model="newPromotion.category"
-                type="date"
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -89,7 +99,7 @@
       </b-form>
     </div>
 
-    <h3>{{ merchant.name }}'s Promotions</h3>
+    <h3>Manage {{ merchant.name }}'s Promotions</h3>
 
     <b-list-group class="mb-5">
       <b-list-group-item v-for="promotion in promotions" :key="promotion.id" :promotion="promotion" class="mt-3 p-0">
@@ -214,12 +224,20 @@
 
       </b-list-group-item>
     </b-list-group>
+
   </b-container>
 </template>
 
 <script>
+import { Hooper, Slide } from 'hooper'
+import 'hooper/dist/hooper.css'
+
 export default {
   name: 'Promotions',
+  components: {
+    Hooper,
+    Slide
+  },
   data () {
     return {
       merchant: '',
@@ -228,7 +246,10 @@ export default {
       error: '',
       editedPromotion: '',
       toastCount: 0,
-      boxOne: ''
+      hooperSettings: {
+        itemsToShow: 3,
+        centerMode: true
+      }
     }
   },
   created () {
@@ -254,7 +275,7 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/promotions/', { promotion: { title: this.newPromotion.title, dollar_value: this.newPromotion.dollar_value, expiary_date: this.newPromotion.expiary_date, category: this.newPromotion.category, merchant_id: this.newPromotion.merchant } })
+      this.$http.secured.post('/api/v1/promotions/', { promotion: { title: this.newPromotion.title, dollar_value: this.newPromotion.dollar_value, expiary_date: this.newPromotion.expiary_date, category: this.newPromotion.category, merchant_id: this.merchant.id } })
         .then(response => {
           this.promotions.push(response.data)
           this.newPromotion = ''
