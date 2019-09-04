@@ -2,16 +2,18 @@
 
 <template>
   <b-container>
-    <h3 class="mt-5">{{ merchant.name }}'s Promotions</h3>
+    <div v-if="promotions.length">
+      <h3 class="mt-5">{{ merchant.name }}'s Promotions</h3>
 
-    <hooper :itemsToShow="3" :infiniteScroll="true" class="mt-5 mb-5">
-      <slide v-for="(promotion, indx) in promotions" :key="indx" :index="indx" class="bg-light border-left border-right border-white">
-        <h5 class="mt-4">{{ promotion.title }}</h5>
-        <p><b>$</b>{{ promotion.dollar_value }}0</p>
-        <p><b>Category:</b> {{ promotion.category }}</p>
-        <p><b>Expires:</b> {{ promotion.expiary_date }}</p>
-      </slide>
-    </hooper>
+      <hooper :itemsToShow="3" :infiniteScroll="true" class="mt-5 mb-5">
+        <slide v-for="(promotion, indx) in promotions" :key="indx" :index="indx" class="bg-light border-left border-right border-white">
+          <h5 class="mt-4">{{ promotion.title }}</h5>
+          <p><b>$</b>{{ promotion.dollar_value }}0</p>
+          <p><b>Category:</b> {{ promotion.category }}</p>
+          <p><b>Expires:</b> {{ promotion.expiary_date }}</p>
+        </slide>
+      </hooper>
+    </div>
 
     <b-row class="mt-5">
       <b-col cols="12">
