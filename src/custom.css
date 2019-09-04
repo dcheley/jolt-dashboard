@@ -40,3 +40,9 @@
 .purple:hover {
   color: #6f42c1;
 }
+
+.table-col {
+  word-wrap: break-word;
+  max-width: 250px;
+  min-width: 115px;
+}

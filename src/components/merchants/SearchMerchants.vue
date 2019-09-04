@@ -4,21 +4,20 @@
   <b-container>
     <div class="mt-5">
       <b-row>
-        <b-col cols="8">
+        <b-col sm="12" md="8">
           <b-input-group>
-            <!-- <b-input-group-prepend> -->
-              <span class="rounded-pill"><b-img :src="require('../../assets/search.svg')" class="search-icon"></b-img></span>
-            <!-- </b-input-group-prepend> -->
-            <b-form-input class="rounded-pill" placeholder=""></b-form-input>
-            <!-- <b-button class="" type="submit"
-            @click=seachMerchants(`param`)>Search</b-button> -->
+            <span class="rounded-pill"><b-img :src="require('../../assets/search.svg')" class="search-icon"></b-img></span>
+            <b-form-input v-model="param" class="rounded-pill"/>
+            <b-button pill class="ml-1" type="submit" @click=searchMerchants()>Search</b-button>
           </b-input-group>
         </b-col>
       </b-row>
+
+      <div class="text-danger mt-4 mb-3" v-if="error">{{ error }}</div>
     </div>
 
-    <div class="mt-5">
-      <b-table :merchants="merchants" :fields="fields"></b-table>
+    <div class="mt-5 text-left">
+      <b-table :items="merchants" :fields="fields"></b-table>
     </div>
   </b-container>
 </template>
@@ -31,52 +30,66 @@ export default {
       fields: [
         {
           key: 'name',
-          sortable: true
+          sortable: true,
+          class: 'table-col'
         },
         {
           key: 'description',
-          sortable: true
+          sortable: true,
+          class: 'table-col'
         },
         {
           key: 'merchant_type',
-          sortable: true
+          sortable: true,
+          class: 'table-col'
         },
         {
           key: 'year_joined',
-          sortable: true
+          sortable: true,
+          class: 'table-col'
         },
         {
           key: 'address',
-          sortable: true
+          sortable: true,
+          class: 'table-col'
         },
         {
           key: 'postal_code',
-          sortable: true
+          sortable: true,
+          class: 'table-col'
         },
         {
           key: 'phone',
-          sortable: true
+          sortable: true,
+          class: 'table-col'
         },
         {
           key: 'users',
-          sortable: true
+          sortable: true,
+          class: 'table-col'
         }
       ],
-      merchants: []
+      merchants: [],
+      param: '',
+      error: ''
     }
   },
   created () {
     if (!localStorage.signedIn) {
       this.$router.replace('/')
     } else {
-      this.$http.secured.get(`/api/v1/search_merchants`)
+      this.$http.secured.get('/api/v1/search_merchants')
         .then(response => { this.merchants = response.data })
         .catch(error => this.setError(error, 'Something went wrong'))
     }
   },
   methods: {
-    searchMerchants (param) {
-      this.$http.secured.get(`/api/v1/search_merchants?search=${param}`)
+    setError (error, text) {
+      this.error = (error.response && error.response.data && error.response.data.error) || text
+    },
+    searchMerchants () {
+      console.log(this.param)
+      this.$http.secured.get('/api/v1/search_merchants?search=' + this.param)
         .then(response => { this.merchants = response.data })
         .catch(error => this.setError(error, 'Something went wrong'))
     }
