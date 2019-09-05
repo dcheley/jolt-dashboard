@@ -10,6 +10,16 @@
 
     <b-row>
       <b-col cols="12">
+        <star-rating v-model="rating"
+                     v-bind:increment="0.5"
+                     v-bind:show-rating="false"
+                     @rating-selected="setRating"
+        ></star-rating>
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col cols="12">
         <h3 class="mb-5">ADD PHOTO</h3>
       </b-col>
     </b-row>
@@ -69,11 +79,17 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
+
 export default {
   name: 'MerchantProfile',
+  components: {
+    StarRating
+  },
   data () {
     return {
       merchant: '',
+      rating: 0,
       error: '',
       editedMerchant: '',
       toastCount: 0
@@ -100,6 +116,9 @@ export default {
       this.editedMerchant = ''
       this.$http.secured.patch(`/api/v1/merchants/${merchant.id}`, { merchant: { name: merchant.name, description: merchant.description, address: merchant.address, phone: merchant.phone, postal_code: merchant.postal_code, category: merchant.category } })
         .catch(error => this.setError(error, 'Failed to update merchant'))
+    },
+    setRating (rating) {
+      this.rating = rating
     }
   }
 }

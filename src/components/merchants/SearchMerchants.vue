@@ -17,7 +17,16 @@
     </div>
 
     <div class="mt-5 text-left">
-      <b-table :items="merchants" :fields="fields"></b-table>
+      <b-table :items="merchants" :fields="fields">
+        <template v-for="field in fields" :slot="field.key" slot-scope="data">
+          <div v-if="field.key === 'name'">
+            <b-link v-bind:href="'/merchants/' + data.item.id" class="purple text-decoration-none">{{ data.item.name }}</b-link>
+          </div>
+          <div v-else>
+            <p>{{ data.value }}</p>
+          </div>
+        </template>
+      </b-table>
     </div>
   </b-container>
 </template>
@@ -88,7 +97,6 @@ export default {
       this.error = (error.response && error.response.data && error.response.data.error) || text
     },
     searchMerchants () {
-      console.log(this.param)
       this.$http.secured.get('/api/v1/search_merchants?search=' + this.param)
         .then(response => { this.merchants = response.data })
         .catch(error => this.setError(error, 'Something went wrong'))
