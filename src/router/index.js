@@ -9,7 +9,7 @@ import SearchMerchants from '@/components/merchants/SearchMerchants.vue'
 import MerchantProfile from '@/components/merchants/MerchantProfile.vue'
 import MerchantAnalytics from '@/components/merchants/MerchantAnalytics.vue'
 import MerchantOffers from '@/components/offers/MerchantOffers.vue'
-import Promotions from '@/components/promotions/Promotions.vue'
+import Advertisements from '@/components/advertisements/Advertisements.vue'
 import PostFeedback from '@/components/feedback/PostFeedback.vue'
 import ViewFeedback from '@/components/feedback/ViewFeedback.vue'
 import Billing from '@/components/billing/Billing.vue'
@@ -65,9 +65,9 @@ const router = new Router({
       component: MerchantOffers
     },
     {
-      path: '/merchants/:id/promotions',
-      name: 'Promotions',
-      component: Promotions
+      path: '/merchants/:id/advertisements',
+      name: 'Advertisements',
+      component: Advertisements
     },
     {
       path: '/post-feedback',

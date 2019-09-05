@@ -1,28 +1,28 @@
-<!-- jolt-dashboard/src/components/promotions/Promotions.vue -->
+<!-- jolt-dashboard/src/components/advertisements/Advertisements.vue -->
 
 <template>
   <b-container>
-    <div v-if="promotions.length">
-      <h3 class="mt-5">{{ merchant.name }}'s Promotions</h3>
+    <div v-if="advertisements.length">
+      <h3 class="mt-5">{{ merchant.name }}'s Advertisements</h3>
 
       <hooper :itemsToShow="3" :infiniteScroll="true" class="mt-5 mb-5">
-        <slide v-for="(promotion, indx) in promotions" :key="indx" :index="indx" class="bg-light border-left border-right border-white">
-          <h5 class="mt-4">{{ promotion.title }}</h5>
-          <p><b>$</b>{{ promotion.dollar_value }}0</p>
-          <p><b>Category:</b> {{ promotion.category }}</p>
-          <p><b>Expires:</b> {{ promotion.expiary_date }}</p>
+        <slide v-for="(advertisementSlide, indx) in advertisements" :key="indx" :index="indx" class="bg-light border-left border-right border-white">
+          <h5 class="mt-4">{{ advertisementSlide.title }}</h5>
+          <p><b>$</b>{{ advertisementSlide.dollar_value }}0</p>
+          <p><b>Category:</b> {{ advertisementSlide.category }}</p>
+          <p><b>Expires:</b> {{ advertisementSlide.expiary_date }}</p>
         </slide>
       </hooper>
     </div>
 
     <b-row class="mt-5">
       <b-col cols="12">
-        <h3 class="">Add a new promotion</h3>
+        <h3 class="">Add a new Advertisement</h3>
       </b-col>
     </b-row>
 
     <div class="">
-      <b-form action="" @submit.prevent="addPromotion">
+      <b-form action="" @submit.prevent="addAdvertisement">
         <div class="text-danger mb-3" v-if="error">{{ error }}</div>
         <b-row>
           <b-col cols="6">
@@ -32,15 +32,12 @@
               label-cols-lg="3"
               label-align="left"
               label="Title"
-              label-for="promotion_title"
+              label-for="advertisement_title"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="promotion_title"
-                v-model="newPromotion.title"
-                autofocus autocomplete="off"
-                placeholder="Type a promotion title"
-                required
+                id="advertisement_title"
+                v-model="newAdvertisement.title"
               ></b-form-input>
             </b-form-group>
 
@@ -50,12 +47,12 @@
               label-cols-lg="3"
               label-align="left"
               label="Dollar Value"
-              label-for="dollar_value"
+              label-for="advertisement_dollar_value"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="promotion_dollar_value"
-                v-model="newPromotion.dollar_value"
+                id="advertisement_dollar_value"
+                v-model="newAdvertisement.dollar_value"
                 type="number"
               ></b-form-input>
             </b-form-group>
@@ -68,12 +65,12 @@
               label-cols-lg="3"
               label-align="left"
               label="Expiary Date"
-              label-for="promotion_expiary_date"
+              label-for="advertisement_expiary_date"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="promotion_expiary_date"
-                v-model="newPromotion.expiary_date"
+                id="advertisement_expiary_date"
+                v-model="newAdvertisement.expiary_date"
                 type="date"
               ></b-form-input>
             </b-form-group>
@@ -84,27 +81,27 @@
               label-cols-lg="3"
               label-align="left"
               label="Category"
-              label-for="promotion_category"
+              label-for="advertisement_category"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="promotion_category"
-                v-model="newPromotion.category"
+                id="advertisement_category"
+                v-model="newAdvertisement.category"
               ></b-form-input>
             </b-form-group>
           </b-col>
         </b-row>
 
         <b-col cols="12">
-          <b-button pill type="submit" value="Add Promotion" class="mb-5">Add Promotion</b-button>
+          <b-button pill type="submit" value="Add Advertisement" class="mb-5">Add Advertisement</b-button>
         </b-col>
       </b-form>
     </div>
 
-    <h3>Manage {{ merchant.name }}'s Promotions</h3>
+    <h3>Manage {{ merchant.name }}'s Advertisements</h3>
 
     <b-list-group class="mb-5">
-      <b-list-group-item v-for="promotion in promotions" :key="promotion.id" :promotion="promotion" class="mt-3 p-0">
+      <b-list-group-item v-for="advertisement in advertisements" :key="advertisement.id" :advertisement="advertisement" class="mt-3 p-0">
 
         <div class="bg-light">
           <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
@@ -112,36 +109,36 @@
           <b-row>
             <b-col cols="12">
               <h4 class="mt-4 mb-4">
-                {{ promotion.title }}
+                {{ advertisement.title }}
               </h4>
             </b-col>
           </b-row>
 
           <b-row class="text-break text-left ml-5">
             <b-col cols="4">
-              <p class=""><b>Category:</b>&nbsp; {{ promotion.category }}</p>
+              <p class=""><b>Category:</b>&nbsp; {{ advertisement.category }}</p>
             </b-col>
             <b-col cols="4">
-              <p class=""><b>$</b>{{ promotion.dollar_value }}0</p>
+              <p class=""><b>$</b>{{ advertisement.dollar_value }}0</p>
             </b-col>
             <b-col cols="4">
-              <p class=""><b>Expires:</b>&nbsp; {{ promotion.expiary_date }}</p>
+              <p class=""><b>Expires:</b>&nbsp; {{ advertisement.expiary_date }}</p>
             </b-col>
           </b-row>
 
           <b-row>
             <b-col cols="12" class="mt-3 mb-4">
               <b-button pill
-              @click.prevent="editPromotion(promotion)">Edit</b-button>
+              @click.prevent="editAdvertisement(advertisement)">Edit</b-button>
 
               <b-button pill class="bg-danger"
-              @click.prevent="confirmDelete(promotion)">Delete</b-button>
+              @click.prevent="confirmDelete(advertisement)">Delete</b-button>
             </b-col>
           </b-row>
         </div>
 
-        <div v-if="promotion == editedPromotion">
-          <b-form action="" @submit.prevent="updatePromotion(promotion)">
+        <div v-if="advertisement == editedAdvertisement">
+          <b-form action="" @submit.prevent="updateAdvertisement(advertisement)">
             <div class="text-danger mb-3" v-if="error">{{ error }}</div>
 
             <b-row class="ml-4 mr-4">
@@ -154,12 +151,11 @@
                   label="Title"
                   label-for="title"
                   class="mt-5 mb-5"
-                  required
                 >
                   <b-form-input
                     id="update_title"
-                    v-model="promotion.title"
-                    type="title"
+                    v-model="advertisement.title"
+                    required
                   ></b-form-input>
                 </b-form-group>
 
@@ -174,7 +170,7 @@
                 >
                   <b-form-input
                     id="update_expiary_date"
-                    v-model="promotion.expiary_date"
+                    v-model="advertisement.expiary_date"
                     type="date"
                   ></b-form-input>
                 </b-form-group>
@@ -192,7 +188,7 @@
                 >
                   <b-form-input
                     id="update_dollar_value"
-                    v-model="promotion.dollar_value"
+                    v-model="advertisement.dollar_value"
                     type="number"
                   ></b-form-input>
                 </b-form-group>
@@ -203,12 +199,12 @@
                   label-cols-lg="3"
                   label-align="left"
                   label="Category"
-                  label-for="promotion_category"
+                  label-for="advertisement_category"
                   class="mt-5 mb-5"
                 >
                   <b-form-input
                     id="update_category"
-                    v-model="promotion.category"
+                    v-model="advertisement.category"
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -218,7 +214,7 @@
               <b-col cols="12" class="mb-3">
                 <b-button pill type="submit" value="Update">Update</b-button>
                 <b-button pill type="button" value="Cancel" class="bg-danger"
-                @click.prevent="closeForm(promotion)">Cancel</b-button>
+                @click.prevent="closeForm(advertisement)">Cancel</b-button>
               </b-col>
             </b-row>
           </b-form>
@@ -235,7 +231,7 @@ import { Hooper, Slide } from 'hooper'
 import 'hooper/dist/hooper.css'
 
 export default {
-  name: 'Promotions',
+  name: 'Advertisements',
   components: {
     Hooper,
     Slide
@@ -243,10 +239,10 @@ export default {
   data () {
     return {
       merchant: '',
-      promotions: [],
-      newPromotion: [],
+      advertisements: [],
+      newAdvertisement: [],
       error: '',
-      editedPromotion: '',
+      editedAdvertisement: '',
       toastCount: 0,
       hooperSettings: {
         itemsToShow: 3,
@@ -259,8 +255,8 @@ export default {
       this.$router.replace('/')
     } else {
       var merchantId = this.$route.params.id
-      this.$http.secured.get('/api/v1/merchants/' + merchantId + '/promotions')
-        .then(response => { this.promotions = response.data })
+      this.$http.secured.get('/api/v1/merchants/' + merchantId + '/advertisements')
+        .then(response => { this.advertisements = response.data })
         .catch(error => this.setError(error, 'Something went wrong'))
 
       this.$http.secured.get('/api/v1/merchants/' + merchantId)
@@ -272,35 +268,35 @@ export default {
     setError (error, text) {
       this.error = (error.response && error.response.data && error.response.data.error) || text
     },
-    addPromotion () {
-      const value = this.newPromotion
+    addAdvertisement () {
+      const value = this.newAdvertisement
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/promotions/', { promotion: { title: this.newPromotion.title, dollar_value: this.newPromotion.dollar_value, expiary_date: this.newPromotion.expiary_date, category: this.newPromotion.category, merchant_id: this.merchant.id } })
+      this.$http.secured.post('/api/v1/advertisements/', { advertisement: { title: this.newAdvertisement.title, dollar_value: this.newAdvertisement.dollar_value, expiary_date: this.newAdvertisement.expiary_date, category: this.newAdvertisement.category, merchant_id: this.newAdvertisement.merchant } })
         .then(response => {
-          this.promotions.push(response.data)
-          this.newPromotion = ''
+          this.advertisements.push(response.data)
+          this.newAdvertisement = ''
           this.toastCount++
-          this.$bvToast.toast(`Scroll down to view Promotion's details`, {
+          this.$bvToast.toast(`Scroll down to view Advertisement's details`, {
             title: 'Success!',
             autoHideDelay: 5000,
             appendToast: true,
             variant: 'success'
           })
         })
-        .catch(error => this.setError(error, 'Failed to create promotion'))
+        .catch(error => this.setError(error, 'Failed to create advertisement'))
     },
-    removePromotion (promotion) {
-      this.$http.secured.delete(`/api/v1/promotions/${promotion.id}`)
+    removeAdvertisement (advertisement) {
+      this.$http.secured.delete(`/api/v1/advertisements/${advertisement.id}`)
         .then(response => {
-          this.promotions.splice(this.promotions.indexOf(promotion), 1)
+          this.advertisements.splice(this.advertisements.indexOf(advertisement), 1)
         })
-        .catch(error => this.setError(error, 'Failed to delete promotion'))
+        .catch(error => this.setError(error, 'Failed to delete advertisement'))
     },
-    confirmDelete (promotion) {
+    confirmDelete (advertisement) {
       this.boxOne = ''
-      this.$bvModal.msgBoxConfirm('Are you sure you want to delete this promotion?', {
+      this.$bvModal.msgBoxConfirm('Are you sure you want to delete this advertisement?', {
         title: 'Please Confirm',
         size: 'sm',
         buttonSize: 'sm',
@@ -314,20 +310,20 @@ export default {
         .then(value => {
           this.boxOne = value
           if (this.boxOne === true) {
-            this.removePromotion(promotion)
+            this.removeAdvertisement(advertisement)
           }
         })
     },
-    editPromotion (promotion) {
-      this.editedPromotion = promotion
+    editAdvertisement (advertisement) {
+      this.editedAdvertisement = advertisement
     },
-    updatePromotion (promotion) {
-      this.editedPromotion = ''
-      this.$http.secured.patch(`/api/v1/promotions/${promotion.id}`, { promotion: { title: promotion.title, dollar_value: promotion.dollar_value, expiary_date: promotion.expiary_date, category: promotion.category, merchant_id: promotion.merchant } })
-        .catch(error => this.setError(error, 'Failed to update promotion'))
+    updateAdvertisement (advertisement) {
+      this.editedAdvertisement = ''
+      this.$http.secured.patch(`/api/v1/advertisements/${advertisement.id}`, { advertisement: { title: advertisement.title, dollar_value: advertisement.dollar_value, expiary_date: advertisement.expiary_date, category: advertisement.category, merchant_id: advertisement.merchant } })
+        .catch(error => this.setError(error, 'Failed to update advertisement'))
     },
-    closeForm (promotion) {
-      this.editedPromotion = ''
+    closeForm (advertisement) {
+      this.editedAdvertisement = ''
     }
   }
 }

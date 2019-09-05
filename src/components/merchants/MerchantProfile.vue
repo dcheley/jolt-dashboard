@@ -39,10 +39,10 @@
         </b-link>
       </b-col>
       <b-col sm="4" md="2">
-        <b-link v-bind:href="'/merchants/' + merchant.id + '/promotions'" class="purple text-decoration-none">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/advertisements'" class="purple text-decoration-none">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/megaphone.svg')" class="small-icon"></b-img>
-            <p class="mt-2">PROMOTIONS</p>
+            <p class="mt-2">ADVERTISEMENTS</p>
           </div>
         </b-link>
       </b-col>

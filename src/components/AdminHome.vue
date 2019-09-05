@@ -11,21 +11,21 @@
 
     <div class="half-colour-bg">
       <b-row class="mt-5">
-        <b-col cols="4 mt-3" class="border-right border-dark">
+        <b-col cols="4" class="border-right border-dark mt-3">
           <b-link to="/merchants" class="purple text-decoration-none">
             <img src="../assets/plus.svg" class="welcome-icon">
             <p class="mt-3">ADD MERCHANT</p>
           </b-link>
         </b-col>
 
-        <b-col cols="4 mt-3" class="border-right border-dark">
+        <b-col cols="4" class="border-right border-dark mt-3">
           <b-link to="/search-merchants" class="purple text-decoration-none">
             <img src="../assets/search.svg" class="welcome-icon">
             <p class="mt-3">SEARCH MERCHANT</p>
           </b-link>
         </b-col>
 
-        <b-col cols="4 mt-3">
+        <b-col cols="4" class="mt-3">
           <b-link to="#" class="purple text-decoration-none">
             <img src="../assets/calendar.svg" class="welcome-icon">
             <p class="mt-3">VIEW EVENTS</p>

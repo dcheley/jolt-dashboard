@@ -139,12 +139,11 @@
                   label="Title"
                   label-for="title"
                   class="mt-5 mb-5"
-                  required
                 >
                   <b-form-input
                     id="update_title"
                     v-model="offer.title"
-                    type="title"
+                    required
                   ></b-form-input>
                 </b-form-group>
 
