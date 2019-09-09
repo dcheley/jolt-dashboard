@@ -11,6 +11,7 @@
     <div class="">
       <b-form action="" @submit.prevent="addOffer">
         <div class="text-danger mb-3" v-if="error">{{ error }}</div>
+        
         <b-row>
           <b-col cols="6">
             <b-form-group
@@ -93,6 +94,16 @@
       <b-list-group-item v-for="offer in offers" :key="offer.id" :offer="offer" class="mt-3 p-0">
         <div class="bg-light">
           <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
+
+          <b-row>
+            <b-col cols="12" class="pl-5">
+              <star-rating v-model="rating"
+                           v-bind:increment="0.5"
+                           v-bind:show-rating="false"
+                           @rating-selected="setRating"
+              ></star-rating>
+            </b-col>
+          </b-row>
 
           <b-row>
             <b-col cols="12">
@@ -214,13 +225,19 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
+
 export default {
   name: 'Offers',
+  components: {
+    StarRating
+  },
   data () {
     return {
       merchants: [],
       offers: [],
       newOffer: [],
+      rating: 0,
       error: '',
       editedOffer: '',
       toastCount: 0
@@ -309,6 +326,9 @@ export default {
     },
     closeForm (offer) {
       this.editedOffer = ''
+    },
+    setRating (rating) {
+      this.rating = rating
     }
   }
 }

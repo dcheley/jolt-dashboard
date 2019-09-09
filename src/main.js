@@ -16,6 +16,7 @@ Vue.use(VueAxios, {
   secured: securedAxiosInstance,
   plain: plainAxiosInstance
 })
+
 Vue.use(BootstrapVue)
 
 /* eslint-disable no-new */

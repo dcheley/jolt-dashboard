@@ -57,12 +57,20 @@
               label-for="address"
               class="mt-3 mb-5"
             >
-              <b-form-input
+              <!-- <b-form-input
                 id="address"
                 v-model="newMerchant.address"
                 autofocus autocomplete="off"
                 placeholder=""
-              ></b-form-input>
+              ></b-form-input> -->
+              <vue-google-autocomplete
+                id="map"
+                v-model="newMerchant.address"
+                class=""
+                placeholder=""
+                v-on:placechanged="getAddressData"
+              >
+              </vue-google-autocomplete>
             </b-form-group>
 
             <b-form-group
@@ -301,7 +309,16 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/merchants/', { merchant: { name: this.newMerchant.name, description: this.newMerchant.description, address: this.newMerchant.address, phone: this.newMerchant.phone, postal_code: this.newMerchant.postal_code, category: this.newMerchant.category } })
+      this.$http.secured.post('/api/v1/merchants/', {
+        merchant: {
+          name: this.newMerchant.name,
+          description: this.newMerchant.description,
+          address: this.newMerchant.address,
+          phone: this.newMerchant.phone,
+          postal_code: this.newMerchant.postal_code,
+          category: this.newMerchant.category
+        }
+      })
         .then(response => {
           this.merchants.push(response.data)
           this.newMerchant = ''
@@ -347,11 +364,23 @@ export default {
     },
     updateMerchant (merchant) {
       this.editedMerchant = ''
-      this.$http.secured.patch(`/api/v1/merchants/${merchant.id}`, { merchant: { name: merchant.name, description: merchant.description, address: merchant.address, phone: merchant.phone, postal_code: merchant.postal_code, category: merchant.category } })
+      this.$http.secured.patch(`/api/v1/merchants/${merchant.id}`, {
+        merchant: {
+          name: merchant.name,
+          description: merchant.description,
+          address: merchant.address,
+          phone: merchant.phone,
+          postal_code: merchant.postal_code,
+          category: merchant.category
+        }
+      })
         .catch(error => this.setError(error, 'Failed to update merchant'))
     },
     closeForm (merchant) {
       this.editedMerchant = ''
+    },
+    getAddressData (addressData, placeResultData, id) {
+      this.address = addressData
     }
   }
 }
