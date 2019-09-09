@@ -57,20 +57,12 @@
               label-for="address"
               class="mt-3 mb-5"
             >
-              <!-- <b-form-input
+              <b-form-input
                 id="address"
                 v-model="newMerchant.address"
                 autofocus autocomplete="off"
                 placeholder=""
-              ></b-form-input> -->
-              <vue-google-autocomplete
-                id="map"
-                v-model="newMerchant.address"
-                class=""
-                placeholder=""
-                v-on:placechanged="getAddressData"
-              >
-              </vue-google-autocomplete>
+              ></b-form-input>
             </b-form-group>
 
             <b-form-group
