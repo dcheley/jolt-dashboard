@@ -11,7 +11,7 @@
     <div class="">
       <b-form action="" @submit.prevent="addOffer">
         <div class="text-danger mb-3" v-if="error">{{ error }}</div>
-        
+
         <b-row>
           <b-col cols="6">
             <b-form-group
@@ -83,7 +83,7 @@
           </b-col>
 
           <b-col cols="12">
-            <p class="">Don't see a merchant? <router-link class="purple text-decoration-none" to="/merchants">Create one.</router-link></p>
+            <p class="">Don't see a merchant? <router-link class="custom-purple text-decoration-none" to="/merchants">Create one.</router-link></p>
             <b-button pill type="submit" value="Add Offer" class="mb-5">Add Offer</b-button>
           </b-col>
         </b-row>
@@ -96,7 +96,7 @@
           <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
 
           <b-row>
-            <b-col cols="12" class="pl-5">
+            <b-col cols="12" class="pl-5 mb-2">
               <star-rating v-model="rating"
                            v-bind:increment="0.5"
                            v-bind:show-rating="false"
@@ -275,7 +275,14 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/offers/', { offer: { title: this.newOffer.title, dollar_value: this.newOffer.dollar_value, expiary_date: this.newOffer.expiary_date, merchant_id: this.newOffer.merchant } })
+      this.$http.secured.post('/api/v1/offers/', {
+        offer: {
+          title: this.newOffer.title,
+          dollar_value: this.newOffer.dollar_value,
+          expiary_date: this.newOffer.expiary_date,
+          merchant_id: this.newOffer.merchant
+        }
+      })
         .then(response => {
           this.offers.push(response.data)
           this.newOffer = ''
@@ -321,7 +328,14 @@ export default {
     },
     updateOffer (offer) {
       this.editedOffer = ''
-      this.$http.secured.patch(`/api/v1/offers/${offer.id}`, { offer: { title: offer.title, dollar_value: offer.dollar_value, expiary_date: offer.expiary_date, merchant_id: offer.merchant } })
+      this.$http.secured.patch(`/api/v1/offers/${offer.id}`, {
+        offer: {
+          title: offer.title,
+          dollar_value: offer.dollar_value,
+          expiary_date: offer.expiary_date,
+          merchant_id: offer.merchant
+        }
+      })
         .catch(error => this.setError(error, 'Failed to update offer'))
     },
     closeForm (offer) {

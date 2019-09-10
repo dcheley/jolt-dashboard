@@ -128,6 +128,16 @@
           <img src="../../assets/bolt-black.svg" class="small-icon mt-3">
 
           <b-row>
+            <b-col cols="12" class="pl-5 mb-2">
+              <star-rating v-model="rating"
+                           v-bind:increment="0.5"
+                           v-bind:show-rating="false"
+                           @rating-selected="setRating"
+              ></star-rating>
+            </b-col>
+          </b-row>
+
+          <b-row>
             <b-col cols="12">
               <h4 class="mt-4 mb-4">
                 {{ merchant.name }}
@@ -271,8 +281,13 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
+
 export default {
   name: 'Merchants',
+  components: {
+    StarRating
+  },
   data () {
     return {
       merchants: [],
@@ -280,7 +295,8 @@ export default {
       error: '',
       editedMerchant: '',
       toastCount: 0,
-      boxOne: ''
+      boxOne: '',
+      rating: 0
     }
   },
   created () {

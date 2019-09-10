@@ -92,7 +92,13 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/feedbacks/', { feedback: { message: this.newFeedback.message, user_id: this.user.id, merchant_id: this.newFeedback.merchant } })
+      this.$http.secured.post('/api/v1/feedbacks/', {
+        feedback: {
+          message: this.newFeedback.message,
+          user_id: this.user.id,
+          merchant_id: this.newFeedback.merchant
+        }
+      })
         .then(response => {
           this.feedback_messages.push(response.data)
           this.newFeedback = ''

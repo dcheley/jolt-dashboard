@@ -273,7 +273,15 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/advertisements/', { advertisement: { title: this.newAdvertisement.title, dollar_value: this.newAdvertisement.dollar_value, expiary_date: this.newAdvertisement.expiary_date, category: this.newAdvertisement.category, merchant_id: this.newAdvertisement.merchant } })
+      this.$http.secured.post('/api/v1/advertisements/', {
+        advertisement: {
+          title: this.newAdvertisement.title,
+          dollar_value: this.newAdvertisement.dollar_value,
+          expiary_date: this.newAdvertisement.expiary_date,
+          category: this.newAdvertisement.category,
+          merchant_id: this.newAdvertisement.merchant
+        }
+      })
         .then(response => {
           this.advertisements.push(response.data)
           this.newAdvertisement = ''
@@ -319,7 +327,15 @@ export default {
     },
     updateAdvertisement (advertisement) {
       this.editedAdvertisement = ''
-      this.$http.secured.patch(`/api/v1/advertisements/${advertisement.id}`, { advertisement: { title: advertisement.title, dollar_value: advertisement.dollar_value, expiary_date: advertisement.expiary_date, category: advertisement.category, merchant_id: advertisement.merchant } })
+      this.$http.secured.patch(`/api/v1/advertisements/${advertisement.id}`, {
+        advertisement: {
+          title: advertisement.title,
+          dollar_value: advertisement.dollar_value,
+          expiary_date: advertisement.expiary_date,
+          category: advertisement.category,
+          merchant_id: advertisement.merchant
+        }
+      })
         .catch(error => this.setError(error, 'Failed to update advertisement'))
     },
     closeForm (advertisement) {

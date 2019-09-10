@@ -1,7 +1,6 @@
 <!-- jolt-dashboard/src/components/merchants/MerchantAnalytics.vue -->
 
 <script>
-// import VueCharts from 'vue-chartjs'
 import { Bar } from 'vue-chartjs'
 
 export default {

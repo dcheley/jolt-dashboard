@@ -20,7 +20,7 @@
       <b-table :items="merchants" :fields="fields">
         <template v-for="field in fields" :slot="field.key" slot-scope="data">
           <div v-if="field.key === 'name'">
-            <b-link v-bind:href="'/merchants/' + data.item.id" class="purple text-decoration-none">{{ data.item.name }}</b-link>
+            <b-link v-bind:href="'/merchants/' + data.item.id" class="custom-purple text-decoration-none">{{ data.item.name }}</b-link>
           </div>
           <div v-else>
             <p>{{ data.value }}</p>

@@ -13,6 +13,8 @@ import Advertisements from '@/components/advertisements/Advertisements.vue'
 import PostFeedback from '@/components/feedback/PostFeedback.vue'
 import ViewFeedback from '@/components/feedback/ViewFeedback.vue'
 import Billing from '@/components/billing/Billing.vue'
+import Events from '@/components/events/Events.vue'
+import MerchantEvents from '@/components/events/MerchantEvents.vue'
 
 Vue.use(Router)
 
@@ -83,6 +85,16 @@ const router = new Router({
       path: '/merchants/:merchant_id/billing',
       name: 'Billing',
       component: Billing
+    },
+    {
+      path: '/events',
+      name: 'Events',
+      component: Events
+    },
+    {
+      path: '/merchants/:merchant_id/events',
+      name: 'MerchantEvents',
+      component: MerchantEvents
     }
   ]
 })

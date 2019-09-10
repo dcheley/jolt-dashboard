@@ -9,7 +9,7 @@
     </b-row>
 
     <b-row>
-      <b-col cols="12">
+      <b-col cols="12" class="mb-4">
         <star-rating v-model="rating"
                      v-bind:increment="0.5"
                      v-bind:show-rating="false"
@@ -33,7 +33,7 @@
     <b-row>
       <b-col sm="0" md="1"></b-col>
       <b-col sm="4" md="2">
-        <b-link v-bind:href="'/merchants/' + merchant.id + '/offers'" class="purple text-decoration-none">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/offers'" class="custom-purple text-decoration-none">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/calendar.svg')" class="small-icon"></b-img>
             <p class="mt-2">SCHEDULING</p>
@@ -41,7 +41,7 @@
         </b-link>
       </b-col>
       <b-col sm="4" md="2">
-        <b-link v-bind:href="'/merchants/' + merchant.id + '/analytics'" class="purple text-decoration-none">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/analytics'" class="custom-purple text-decoration-none">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/line-chart.svg')" class="small-icon"></b-img>
             <p class="mt-2">ANALYTICS</p>
@@ -49,7 +49,7 @@
         </b-link>
       </b-col>
       <b-col sm="4" md="2">
-        <b-link v-bind:href="'/merchants/' + merchant.id + '/advertisements'" class="purple text-decoration-none">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/advertisements'" class="custom-purple text-decoration-none">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/megaphone.svg')" class="small-icon"></b-img>
             <p class="mt-2">ADVERTISEMENTS</p>
@@ -57,7 +57,7 @@
         </b-link>
       </b-col>
       <b-col sm="4" md="2">
-        <b-link v-bind:href="'/merchants/' + merchant.id + '/billing'" class="purple text-decoration-none">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/billing'" class="custom-purple text-decoration-none">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/money.svg')" class="small-icon"></b-img>
             <p class="mt-2">BILLING</p>
@@ -65,7 +65,7 @@
         </b-link>
       </b-col>
       <b-col sm="4" md="2">
-        <b-link href="/view-feedback" class="purple text-decoration-none">
+        <b-link href="/view-feedback" class="custom-purple text-decoration-none">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/feedback.svg')" class="small-icon"></b-img>
             <p class="mt-2">FEEDBACK</p>
