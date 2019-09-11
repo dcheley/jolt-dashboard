@@ -6,15 +6,10 @@ import BootstrapVue from 'bootstrap-vue'
 import router from './router'
 import VueAxios from 'vue-axios'
 import { securedAxiosInstance, plainAxiosInstance } from './backend/axios'
-import Vuetify from 'vuetify'
-import DaySpanVuetify from 'dayspan-vuetify'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './custom.css'
-import 'vuetify/dist/vuetify.min.css'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
-import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
 
 Vue.config.productionTip = false
 
@@ -24,14 +19,6 @@ Vue.use(VueAxios, {
 })
 
 Vue.use(BootstrapVue)
-
-Vue.use(Vuetify)
-
-Vue.use(DaySpanVuetify, {
-  methods: {
-    getDefaultEventColor: () => '#1976d2'
-  }
-})
 
 /* eslint-disable no-new */
 new Vue({

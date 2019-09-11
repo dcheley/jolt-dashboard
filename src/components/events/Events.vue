@@ -1,20 +1,24 @@
 <template>
-  <v-app id="dayspan" v-cloak>
-    <ds-calendar-app :calendar="calendar"></ds-calendar-app>
-  </v-app>
+  <VueCtkDateTimePicker v-model="events"
+                        :inline="true"
+  />
+  <!-- Make a custom submit button to send info to api -->
 </template>
 
 <script>
-import { Calendar } from 'dayspan'
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker'
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css'
 
 export default {
   name: 'Events',
+  components: {
+    VueCtkDateTimePicker
+  },
   data () {
     return {
       events: [],
       merchants: [],
       error: '',
-      calendar: Calendar.months(),
       toastCount: 0
     }
   }

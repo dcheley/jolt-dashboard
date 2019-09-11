@@ -27,7 +27,7 @@
         <b-row>
           <b-col cols="6">
             <b-form-group
-              id="input-group-title"
+              id="input-group-titlez"
               label-cols-sm="4"
               label-cols-lg="3"
               label-align="left"
@@ -36,8 +36,10 @@
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="advertisement_title"
+                id="advertisement_titlez"
                 v-model="newAdvertisement.title"
+                required
+                type="text"
               ></b-form-input>
             </b-form-group>
 
@@ -92,9 +94,11 @@
           </b-col>
         </b-row>
 
-        <b-col cols="12">
-          <b-button pill type="submit" value="Add Advertisement" class="mb-5">Add Advertisement</b-button>
-        </b-col>
+        <b-row>
+          <b-col cols="12">
+            <b-button pill type="submit" value="Add Advertisement" class="mb-5">Add Advertisement</b-button>
+          </b-col>
+        </b-row>
       </b-form>
     </div>
 
