@@ -50,5 +50,9 @@
 .form-control {
   display: block !important;
 }
-.date-time-picker {
+
+@media only screen and (max-width: 991px) {
+  .dropdown-item {
+    text-align: center;
+  }
 }

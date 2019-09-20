@@ -43,6 +43,15 @@ export default {
       ]
     }
   },
+  created () {
+    if (!localStorage.signedIn) {
+      this.$router.replace('/')
+    } else {
+      this.$http.secured.get('/api/v1/events')
+        .then(response => { this.events = response.data })
+        .catch(error => this.setError(error, 'Something went wrong'))
+    }
+  },
   methods: {
     onChange: function (ev) {
       console.log('Event :: change')

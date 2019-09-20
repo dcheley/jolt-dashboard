@@ -14,7 +14,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './custom.css'
 import '@progress/kendo-theme-default/dist/all.css'
 
-
 Vue.config.productionTip = false
 
 Vue.use(VueAxios, {

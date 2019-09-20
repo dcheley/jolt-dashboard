@@ -26,6 +26,7 @@ export default {
   data () {
     return {
       events: [],
+      merchant: '',
       date: new Date('2013/6/6'),
       localDataSource: [
         {
@@ -43,7 +44,23 @@ export default {
       ]
     }
   },
+  created () {
+    if (!localStorage.signedIn) {
+      this.$router.replace('/')
+    } else {
+      var merchantId = this.$route.params.id
+      this.$http.secured.get('/api/v1/merchants/' + merchantId)
+        .then(response => { this.merchant = response.data })
+        .catch(error => this.setError(error, 'Something went wrong'))
+      this.$http.secured.get('/api/v1/merchants/' + merchantId + '/events')
+        .then(response => { this.events = response.data })
+        .catch(error => this.setError(error, 'Something went wrong'))
+    }
+  },
   methods: {
+    setError (error, text) {
+      this.error = (error.response && error.response.data && error.response.data.error) || text
+    },
     onChange: function (ev) {
       console.log('Event :: change')
     },
