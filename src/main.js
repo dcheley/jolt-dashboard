@@ -6,10 +6,14 @@ import BootstrapVue from 'bootstrap-vue'
 import router from './router'
 import VueAxios from 'vue-axios'
 import { securedAxiosInstance, plainAxiosInstance } from './backend/axios'
+import '@progress/kendo-ui/js/kendo.scheduler'
+import { Scheduler, SchedulerInstaller } from '@progress/kendo-scheduler-vue-wrapper'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './custom.css'
+import '@progress/kendo-theme-default/dist/all.css'
+
 
 Vue.config.productionTip = false
 
@@ -19,6 +23,7 @@ Vue.use(VueAxios, {
 })
 
 Vue.use(BootstrapVue)
+Vue.use(SchedulerInstaller)
 
 /* eslint-disable no-new */
 new Vue({
@@ -26,6 +31,9 @@ new Vue({
   router,
   securedAxiosInstance,
   plainAxiosInstance,
-  components: { App },
+  components: {
+    App,
+    Scheduler
+  },
   template: '<App/>'
 })
