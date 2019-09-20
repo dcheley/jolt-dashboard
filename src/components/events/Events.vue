@@ -1,8 +1,7 @@
-<!-- jolt-dashboard/src/components/feedback/Events.vue -->
+<!-- jolt-dashboard/src/components/events/Events.vue -->
 
 <template>
-  <kendo-scheduler :data-source="localDataSource"
-                   :date="date"
+  <kendo-scheduler :data-source="events"
                    :height="600"
                    :timezone="'Etc/UTC'"
                    @change="onChange"
@@ -25,22 +24,7 @@
 export default {
   data () {
     return {
-      events: [],
-      date: new Date('2013/6/6'),
-      localDataSource: [
-        {
-          id: 1,
-          start: new Date('2013/6/6 08:00 AM'),
-          end: new Date('2013/6/6 09:00 AM'),
-          title: 'Interview'
-        },
-        {
-          id: 2,
-          start: new Date('2013/6/6 08:00 AM'),
-          end: new Date('2013/6/6 09:00 AM'),
-          title: 'Meeting'
-        }
-      ]
+      events: []
     }
   },
   created () {
@@ -53,6 +37,9 @@ export default {
     }
   },
   methods: {
+    setError (error, text) {
+      this.error = (error.response && error.response.data && error.response.data.error) || text
+    },
     onChange: function (ev) {
       console.log('Event :: change')
     },
