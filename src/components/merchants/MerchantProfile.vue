@@ -4,7 +4,25 @@
   <b-container>
     <b-row>
       <b-col cols="12">
+
         <h3 class="mt-3 mb-5">{{ merchant.name }}</h3>
+        <div>
+          <b-card
+            title={{ merchant.name }}
+            img-src="https://picsum.photos/600/300/?image=25"
+            img-alt="Image"
+            img-top
+            tag="article"
+            class="mb-2"
+          >
+            <b-card-text>
+              {{ merchant.description }}
+            </b-card-text>
+
+            <b-button href="#" variant="primary">Go somewhere</b-button>
+          </b-card>
+        </div>
+
       </b-col>
     </b-row>
 
