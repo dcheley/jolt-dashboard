@@ -6,7 +6,7 @@
       <b-col cols="12">
 
         <h3 class="mt-3 mb-5">{{ merchant.name }}</h3>
-        <div>
+        <!-- <div>
           <b-card
             title={{ merchant.name }}
             img-src="https://picsum.photos/600/300/?image=25"
@@ -21,7 +21,7 @@
 
             <b-button href="#" variant="primary">Go somewhere</b-button>
           </b-card>
-        </div>
+        </div> -->
 
       </b-col>
     </b-row>
@@ -132,7 +132,15 @@ export default {
     },
     updateMerchant (merchant) {
       this.editedMerchant = ''
-      this.$http.secured.patch(`/api/v1/merchants/${merchant.id}`, { merchant: { name: merchant.name, description: merchant.description, address: merchant.address, phone: merchant.phone, postal_code: merchant.postal_code, category: merchant.category } })
+      this.$http.secured.patch(`/api/v1/merchants/${merchant.id}`, {
+        merchant: {
+          name: merchant.name,
+          description: merchant.description,
+          address: merchant.address,
+          phone: merchant.phone,
+          postal_code: merchant.postal_code,
+          category: merchant.category }
+      })
         .catch(error => this.setError(error, 'Failed to update merchant'))
     },
     setRating (rating) {

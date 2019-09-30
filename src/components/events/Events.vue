@@ -65,7 +65,18 @@ export default {
       console.log('Event :: resize')
     },
     onSave: function (ev) {
-      console.log('Event :: save')
+      console.log('Event :: save' + ev)
+      this.$http.secured.post('/api/v1/events/', {
+        event: {
+          // start_time: start,
+          // end_time: end
+        }
+      })
+        .then(response => {
+          this.events.push(response.data)
+          this.newEvent = ''
+        })
+        .catch(error => this.setError(error, 'Failed to create event'))
     }
   }
 }
