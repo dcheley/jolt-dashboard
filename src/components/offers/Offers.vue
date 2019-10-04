@@ -51,17 +51,17 @@
 
           <b-col cols="6">
             <b-form-group
-              id="input-group-expiary"
+              id="input-group-expiry"
               label-cols-sm="4"
               label-cols-lg="3"
               label-align="left"
               label="Expiary Date"
-              label-for="offer_expiary_date"
+              label-for="offer_expiry_date"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="offer_expiary_date"
-                v-model="newOffer.expiary_date"
+                id="offer_expiry_date"
+                v-model="newOffer.expiry_date"
                 type="date"
               ></b-form-input>
             </b-form-group>
@@ -121,7 +121,7 @@
               <p class=""><b>$</b>{{ offer.dollar_value }}0</p>
             </b-col>
             <b-col cols="4">
-              <p class=""><b>Expires:</b>&nbsp; {{ offer.expiary_date }}</p>
+              <p class=""><b>Expires:</b>&nbsp; {{ offer.expiry_date }}</p>
             </b-col>
           </b-row>
 
@@ -159,17 +159,17 @@
                 </b-form-group>
 
                 <b-form-group
-                  id="update-group-expiary"
+                  id="update-group-expiry"
                   label-cols-sm="4"
                   label-cols-lg="3"
                   label-align="left"
                   label="Expiary Date"
-                  label-for="expiary_date"
+                  label-for="expiry_date"
                   class="mt-5 mb-5"
                 >
                   <b-form-input
-                    id="update_expiary_date"
-                    v-model="offer.expiary_date"
+                    id="update_expiry_date"
+                    v-model="offer.expiry_date"
                     type="date"
                   ></b-form-input>
                 </b-form-group>
@@ -279,7 +279,7 @@ export default {
         offer: {
           title: this.newOffer.title,
           dollar_value: this.newOffer.dollar_value,
-          expiary_date: this.newOffer.expiary_date,
+          expiry_date: this.newOffer.expiry_date,
           merchant_id: this.newOffer.merchant
         }
       })
@@ -332,7 +332,7 @@ export default {
         offer: {
           title: offer.title,
           dollar_value: offer.dollar_value,
-          expiary_date: offer.expiary_date,
+          expiry_date: offer.expiry_date,
           merchant_id: offer.merchant
         }
       })

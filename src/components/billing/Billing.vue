@@ -2,7 +2,6 @@
 
 <template>
   <b-container>
-
     <b-row class="mt-5">
       <b-col cols="12">
         <h3 class="text-left">Billing Information</h3>
@@ -73,6 +72,7 @@
               <b-form-input
                 id="billing_address"
                 v-model="newBilling.address"
+                required
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -90,6 +90,7 @@
               <b-form-input
                 id="billing_city"
                 v-model="newBilling.city"
+                required
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -105,6 +106,7 @@
               <b-form-input
                 id="billing_postal_code"
                 v-model="newBilling.postal_code"
+                required
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -120,6 +122,7 @@
               <b-form-input
                 id="billing_province"
                 v-model="newBilling.province"
+                required
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -135,6 +138,7 @@
               <b-form-input
                 id="billing_phone"
                 v-model="newBilling.phone"
+                required
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -158,21 +162,23 @@
               <b-form-input
                 id="billing_credit_card_number"
                 v-model="newBilling.credit_card_number"
+                required
               ></b-form-input>
             </b-form-group>
           </b-col>
 
           <b-col sm="12" md="3">
             <b-form-group
-              id="input-group-credit-expiary-date"
+              id="input-group-credit-expiry-date"
               label-align="left"
-              label="Expiary Date"
-              label-for="billing_credit_expiary_date"
+              label="Expiry Date"
+              label-for="billing_credit_expiry_date"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="billing-credit-expiary-date"
-                v-model="newBilling.credit_expiary_date"
+                id="billing-credit-expiry-date"
+                v-model="newBilling.credit_expiry_date"
+                required
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -188,6 +194,7 @@
               <b-form-input
                 id="billing_province"
                 v-model="newBilling.cvv"
+                required
               ></b-form-input>
             </b-form-group>
           </b-col>
@@ -295,6 +302,7 @@
                   <b-form-input
                     id="billing_address"
                     v-model="billing.address"
+                    required
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -312,6 +320,7 @@
                   <b-form-input
                     id="billing_city"
                     v-model="billing.city"
+                    required
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -327,6 +336,7 @@
                   <b-form-input
                     id="billing_postal_code"
                     v-model="billing.postal_code"
+                    required
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -342,6 +352,7 @@
                   <b-form-input
                     id="billing_province"
                     v-model="billing.province"
+                    required
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -357,6 +368,7 @@
                   <b-form-input
                     id="billing_phone"
                     v-model="billing.phone"
+                    required
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -374,21 +386,23 @@
                   <b-form-input
                     id="billing_credit_card_number"
                     v-model="billing.credit_card_number"
+                    required
                   ></b-form-input>
                 </b-form-group>
               </b-col>
 
               <b-col sm="12" md="3">
                 <b-form-group
-                  id="input-group-credit-expiary-date"
+                  id="input-group-credit-expiry-date"
                   label-align="left"
-                  label="Expiary Date"
-                  label-for="billing_credit_expiary_date"
+                  label="Expiry Date"
+                  label-for="billing_credit_expiry_date"
                   class="mt-5 mb-5 mr-2 ml-2"
                 >
                   <b-form-input
-                    id="billing-credit-expiary-date"
-                    v-model="billing.credit_expiary_date"
+                    id="billing-credit-expiry-date"
+                    v-model="billing.credit_expiry_date"
+                    required
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -404,6 +418,7 @@
                   <b-form-input
                     id="billing_province"
                     v-model="billing.cvv"
+                    required
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -463,24 +478,22 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post(`/api/v1/merchants/${merchant.id}/billings`,
-        {
-          billing:
-          {
-            first_name: this.newBilling.first_name,
-            last_name: this.newBilling.last_name,
-            institution: this.newBilling.institution,
-            credit_card_number: this.newBilling.credit_card_number,
-            credit_expiary_date: this.newBilling.credit_expiary_date,
-            cvv: this.newBilling.cvv,
-            address: this.newBilling.address,
-            postal_code: this.newBilling.postal_code,
-            phone: this.newBilling.phone,
-            province: this.newBilling.province,
-            city: this.newBilling.city,
-            merchant_id: this.merchant.id
-          }
-        })
+      this.$http.secured.post(`/api/v1/merchants/${merchant.id}/billings`, {
+        billing: {
+          first_name: this.newBilling.first_name,
+          last_name: this.newBilling.last_name,
+          institution: this.newBilling.institution,
+          credit_card_number: this.newBilling.credit_card_number,
+          credit_expiry_date: this.newBilling.credit_expiry_date,
+          cvv: this.newBilling.cvv,
+          address: this.newBilling.address,
+          postal_code: this.newBilling.postal_code,
+          phone: this.newBilling.phone,
+          province: this.newBilling.province,
+          city: this.newBilling.city,
+          merchant_id: this.merchant.id
+        }
+      })
         .then(response => {
           this.billings.push(response.data)
           this.newBilling = ''
@@ -526,24 +539,22 @@ export default {
     },
     updateBilling (merchant, billing) {
       this.editedBilling = ''
-      this.$http.secured.patch(`/api/v1/merchants/${merchant.id}/billings/${billing.id}`,
-        {
-          billing:
-          {
-            first_name: billing.first_name,
-            last_name: billing.last_name,
-            institution: billing.institution,
-            credit_card_number: billing.credit_card_number,
-            credit_expiary_date: billing.credit_expiary_date,
-            cvv: billing.cvv,
-            address: billing.address,
-            postal_code: billing.postal_code,
-            phone: billing.phone,
-            province: billing.province,
-            city: billing.city,
-            merchant_id: billing.merchant
-          }
-        })
+      this.$http.secured.patch(`/api/v1/merchants/${merchant.id}/billings/${billing.id}`, {
+        billing: {
+          first_name: billing.first_name,
+          last_name: billing.last_name,
+          institution: billing.institution,
+          credit_card_number: billing.credit_card_number,
+          credit_expiry_date: billing.credit_expiry_date,
+          cvv: billing.cvv,
+          address: billing.address,
+          postal_code: billing.postal_code,
+          phone: billing.phone,
+          province: billing.province,
+          city: billing.city,
+          merchant_id: billing.merchant
+        }
+      })
         .catch(error => this.setError(error, 'Failed to update billing information'))
     },
     closeForm (billing) {

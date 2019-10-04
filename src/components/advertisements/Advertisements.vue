@@ -10,7 +10,7 @@
           <h5 class="mt-4">{{ advertisementSlide.title }}</h5>
           <p><b>$</b>{{ advertisementSlide.dollar_value }}0</p>
           <p><b>Category:</b> {{ advertisementSlide.category }}</p>
-          <p><b>Expires:</b> {{ advertisementSlide.expiary_date }}</p>
+          <p><b>Expires:</b> {{ advertisementSlide.expiry_date }}</p>
         </slide>
       </hooper>
     </div>
@@ -62,17 +62,17 @@
 
           <b-col cols="6">
             <b-form-group
-              id="input-group-expiary"
+              id="input-group-expiry"
               label-cols-sm="4"
               label-cols-lg="3"
               label-align="left"
               label="Expiary Date"
-              label-for="advertisement_expiary_date"
+              label-for="advertisement_expiry_date"
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="advertisement_expiary_date"
-                v-model="newAdvertisement.expiary_date"
+                id="advertisement_expiry_date"
+                v-model="newAdvertisement.expiry_date"
                 type="date"
               ></b-form-input>
             </b-form-group>
@@ -126,7 +126,7 @@
               <p class=""><b>$</b>{{ advertisement.dollar_value }}0</p>
             </b-col>
             <b-col cols="4">
-              <p class=""><b>Expires:</b>&nbsp; {{ advertisement.expiary_date }}</p>
+              <p class=""><b>Expires:</b>&nbsp; {{ advertisement.expiry_date }}</p>
             </b-col>
           </b-row>
 
@@ -164,17 +164,17 @@
                 </b-form-group>
 
                 <b-form-group
-                  id="update-group-expiary"
+                  id="update-group-expiry"
                   label-cols-sm="4"
                   label-cols-lg="3"
                   label-align="left"
                   label="Expiary Date"
-                  label-for="expiary_date"
+                  label-for="expiry_date"
                   class="mt-5 mb-5"
                 >
                   <b-form-input
-                    id="update_expiary_date"
-                    v-model="advertisement.expiary_date"
+                    id="update_expiry_date"
+                    v-model="advertisement.expiry_date"
                     type="date"
                   ></b-form-input>
                 </b-form-group>
@@ -281,7 +281,7 @@ export default {
         advertisement: {
           title: this.newAdvertisement.title,
           dollar_value: this.newAdvertisement.dollar_value,
-          expiary_date: this.newAdvertisement.expiary_date,
+          expiry_date: this.newAdvertisement.expiry_date,
           category: this.newAdvertisement.category,
           merchant_id: this.newAdvertisement.merchant
         }
@@ -335,7 +335,7 @@ export default {
         advertisement: {
           title: advertisement.title,
           dollar_value: advertisement.dollar_value,
-          expiary_date: advertisement.expiary_date,
+          expiry_date: advertisement.expiry_date,
           category: advertisement.category,
           merchant_id: advertisement.merchant
         }

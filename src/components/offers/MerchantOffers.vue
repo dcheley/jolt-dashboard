@@ -40,7 +40,14 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/offers/', { offer: { title: this.newOffer.title, dollar_value: this.newOffer.dollar_value, expiary_date: this.newOffer.expiary_date, merchant_id: this.newOffer.merchant } })
+      this.$http.secured.post('/api/v1/offers/', {
+        offer: {
+          title: this.newOffer.title,
+          dollar_value: this.newOffer.dollar_value,
+          expiry_date: this.newOffer.expiry_date,
+          merchant_id: this.newOffer.merchant
+        }
+      })
         .then(response => {
           this.offers.push(response.data)
           this.newOffer = ''
@@ -86,7 +93,14 @@ export default {
     },
     updateOffer (offer) {
       this.editedOffer = ''
-      this.$http.secured.patch(`/api/v1/offers/${offer.id}`, { offer: { title: offer.title, dollar_value: offer.dollar_value, expiary_date: offer.expiary_date, merchant_id: offer.merchant } })
+      this.$http.secured.patch(`/api/v1/offers/${offer.id}`, {
+        offer: {
+          title: offer.title,
+          dollar_value: offer.dollar_value,
+          expiry_date: offer.expiry_date,
+          merchant_id: offer.merchant
+        }
+      })
         .catch(error => this.setError(error, 'Failed to update offer'))
     },
     closeForm (offer) {
