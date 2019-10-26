@@ -51,7 +51,7 @@
     <b-row>
       <b-col sm="0" md="1"></b-col>
       <b-col sm="4" md="2">
-        <b-link v-bind:href="'/merchants/' + merchant.id + '/offers'" class="custom-purple text-decoration-none">
+        <b-link v-bind:href="'/merchants/' + merchant.id + '/events'" class="custom-purple text-decoration-none">
           <div class="border border-dark pt-3">
             <b-img :src="require('../../assets/calendar.svg')" class="small-icon"></b-img>
             <p class="mt-2">SCHEDULING</p>
