@@ -85,7 +85,6 @@
       </b-form>
     </div>
 
-
     <b-list-group class="mb-5">
       <b-list-group-item v-for="event in events" :key="event.id" :event="event" class="mt-3 p-0">
 

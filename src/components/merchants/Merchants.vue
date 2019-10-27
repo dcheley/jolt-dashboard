@@ -100,16 +100,12 @@
             <b-form-group
               id="input-group-category"
               label-align="left"
-              label="Type"
+              label="Category"
               label-for="category"
               class="mt-3 mb-5"
             >
-              <b-form-input
-                id="category"
-                v-model="newMerchant.category"
-                autofocus autocomplete="off"
-                placeholder=""
-              ></b-form-input>
+              <b-form-select v-model="selected" :options="options"></b-form-select>
+              <!-- <div class="mt-3">Selected: <strong>{{ selected }}</strong></div> -->
             </b-form-group>
           </b-col>
         </b-row>
@@ -253,14 +249,12 @@
                 <b-form-group
                   id="update-merchant-category"
                   label-align="left"
-                  label="Type"
+                  label="Category"
                   label-for="category"
                   class="mt-3 mb-5"
                 >
-                  <b-form-input
-                    id="update-category"
-                    v-model="merchant.category"
-                  ></b-form-input>
+                  <b-form-select v-model="selected" :options="options"></b-form-select>
+                  <!-- <div class="mt-3">Selected: <strong>{{ selected }}</strong></div> -->
                 </b-form-group>
               </b-col>
             </b-row>
@@ -296,7 +290,16 @@ export default {
       editedMerchant: '',
       toastCount: 0,
       boxOne: '',
-      rating: 0
+      rating: 0,
+      selected: null,
+       options: [
+         { value: null, text: 'Please select an option', disabled: true },
+         { value: 'Activities', text: 'Activities' },
+         { value: 'Food & Drinks', text: 'Food & Drinks' },
+         { value: 'Screenings', text: 'Screenings' },
+         { value: 'Shows', text: 'Shows' },
+         { value: 'Fitness/Outdoor Activities', text: 'Fitness/Outdoor Activities' }
+       ]
     }
   },
   created () {
@@ -324,7 +327,7 @@ export default {
           address: this.newMerchant.address,
           phone: this.newMerchant.phone,
           postal_code: this.newMerchant.postal_code,
-          category: this.newMerchant.category
+          category: this.selected
         }
       })
         .then(response => {
@@ -379,7 +382,7 @@ export default {
           address: merchant.address,
           phone: merchant.phone,
           postal_code: merchant.postal_code,
-          category: merchant.category
+          category: this.selected
         }
       })
         .catch(error => this.setError(error, 'Failed to update merchant'))

@@ -48,7 +48,7 @@ export default {
           class: 'table-col'
         },
         {
-          key: 'merchant_type',
+          key: 'category',
           sortable: true,
           class: 'table-col'
         },
