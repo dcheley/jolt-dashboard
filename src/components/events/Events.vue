@@ -1,4 +1,4 @@
-<!-- jolt-dashboard/src/components/event/PostEvent.vue -->
+<!-- jolt-dashboard/src/components/event/Events.vue -->
 
 <template>
   <b-container>
@@ -84,7 +84,6 @@
         </b-row>
       </b-form>
     </div>
-
 
     <b-list-group class="mb-5">
       <b-list-group-item v-for="event in events" :key="event.id" :event="event" class="mt-3 p-0">

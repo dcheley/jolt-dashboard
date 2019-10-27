@@ -104,7 +104,7 @@
               label-for="category"
               class="mt-3 mb-5"
             >
-              <b-form-select v-model="selected" :options="options"></b-form-select>
+              <b-form-select v-model="selected" :options="options" required></b-form-select>
               <!-- <div class="mt-3">Selected: <strong>{{ selected }}</strong></div> -->
             </b-form-group>
           </b-col>
@@ -253,7 +253,7 @@
                   label-for="category"
                   class="mt-3 mb-5"
                 >
-                  <b-form-select v-model="selected" :options="options"></b-form-select>
+                  <b-form-select v-model="selected" :options="options" required></b-form-select>
                   <!-- <div class="mt-3">Selected: <strong>{{ selected }}</strong></div> -->
                 </b-form-group>
               </b-col>
@@ -292,14 +292,14 @@ export default {
       boxOne: '',
       rating: 0,
       selected: null,
-       options: [
-         { value: null, text: 'Please select an option', disabled: true },
-         { value: 'Activities', text: 'Activities' },
-         { value: 'Food & Drinks', text: 'Food & Drinks' },
-         { value: 'Screenings', text: 'Screenings' },
-         { value: 'Shows', text: 'Shows' },
-         { value: 'Fitness/Outdoor Activities', text: 'Fitness/Outdoor Activities' }
-       ]
+      options: [
+        { value: null, text: 'Please select a category', disabled: true },
+        { value: 'Activities', text: 'Activities' },
+        { value: 'Food and Drinks', text: 'Food & Drinks' },
+        { value: 'Screenings', text: 'Screenings' },
+        { value: 'Shows', text: 'Shows' },
+        { value: 'Fitness/Outdoor Activities', text: 'Fitness/Outdoor Activities' }
+      ]
     }
   },
   created () {

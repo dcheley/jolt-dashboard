@@ -1,4 +1,4 @@
-<!-- jolt-dashboard/src/components/event/PostEvent.vue -->
+<!-- jolt-dashboard/src/components/event/MerchantEvents.vue -->
 
 <template>
   <b-container>

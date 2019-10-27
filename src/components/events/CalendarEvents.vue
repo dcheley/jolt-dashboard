@@ -1,4 +1,4 @@
-<!-- jolt-dashboard/src/components/events/Events.vue -->
+<!-- jolt-dashboard/src/components/events/CalendarEvents.vue -->
 
 <template>
   <kendo-scheduler :data-source="events"

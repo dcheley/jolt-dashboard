@@ -33,12 +33,21 @@
   width: 90% !important;
 }
 
-.custom-purple {
+.custom-purple, .custom-purple-btn {
   color: #9370DB;
+}
+
+.custom-purple-btn {
+  border-color: #9370DB;
 }
 
 .purple:hover {
   color: #6f42c1;
+}
+
+.custom-purple-btn:hover {
+  background-color: #6f42c1;
+  color: white;
 }
 
 .table-col {

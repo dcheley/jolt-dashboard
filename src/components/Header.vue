@@ -25,6 +25,7 @@
               </b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item to="/search-merchants" class="" v-if="signedIn()">Search</b-nav-item>
+            <b-nav-item to="/category-merchants" class="" v-if="signedIn()">Categories</b-nav-item>
             <b-nav-item to="/offers" class="" v-if="signedIn()">Offers</b-nav-item>
             <b-nav-item to="/events" class="" v-if="signedIn()">Events</b-nav-item>
             <b-nav-item to="/post-feedback" class="" v-if="signedIn()">Feedback</b-nav-item>

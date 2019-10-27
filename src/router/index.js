@@ -6,6 +6,7 @@ import Merchants from '@/components/merchants/Merchants.vue'
 import Offers from '@/components/offers/Offers.vue'
 import AdminHome from '@/components/AdminHome.vue'
 import SearchMerchants from '@/components/merchants/SearchMerchants.vue'
+import CategoryMerchants from '@/components/merchants/CategoryMerchants.vue'
 import MerchantProfile from '@/components/merchants/MerchantProfile.vue'
 import MerchantAnalytics from '@/components/merchants/MerchantAnalytics.vue'
 import MerchantOffers from '@/components/offers/MerchantOffers.vue'
@@ -50,6 +51,11 @@ const router = new Router({
       path: '/search-merchants',
       name: 'SearchMerchants',
       component: SearchMerchants
+    },
+    {
+      path: '/category-merchants',
+      name: 'CategoryMerchants',
+      component: CategoryMerchants
     },
     {
       path: '/merchants/:id',

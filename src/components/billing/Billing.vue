@@ -119,11 +119,7 @@
               label-for="billing_province"
               class="mt-5 mb-5"
             >
-              <b-form-input
-                id="billing_province"
-                v-model="newBilling.province"
-                required
-              ></b-form-input>
+              <b-form-select v-model="selected_province" :options="options" required></b-form-select>
             </b-form-group>
           </b-col>
 
@@ -192,7 +188,7 @@
               class="mt-5 mb-5"
             >
               <b-form-input
-                id="billing_province"
+                id="billing_cvv"
                 v-model="newBilling.cvv"
                 required
               ></b-form-input>
@@ -349,11 +345,7 @@
                   label-for="billing_province"
                   class="mt-5 mb-5 mr-2 ml-2"
                 >
-                  <b-form-input
-                    id="billing_province"
-                    v-model="billing.province"
-                    required
-                  ></b-form-input>
+                  <b-form-select v-model="selected_province" :options="options" required></b-form-select>
                 </b-form-group>
               </b-col>
 
@@ -416,7 +408,7 @@
                   class="mt-5 mb-5 mr-2 ml-2"
                 >
                   <b-form-input
-                    id="billing_province"
+                    id="billing_cvv"
                     v-model="billing.cvv"
                     required
                   ></b-form-input>
@@ -452,7 +444,24 @@ export default {
       newBilling: [],
       error: '',
       editedBilling: '',
-      toastCount: 0
+      toastCount: 0,
+      selected_province: null,
+      options: [
+        { value: null, text: 'Please select a province', disabled: true },
+        { value: 'AB', text: 'Alberta' },
+        { value: 'BC', text: 'British Columbia' },
+        { value: 'MB', text: 'Manitoba' },
+        { value: 'NB', text: 'New Brunswick' },
+        { value: 'NL', text: 'Newfound Land and Labrador' },
+        { value: 'NS', text: 'Nova Scotia' },
+        { value: 'NT', text: 'Northwest Territories' },
+        { value: 'NU', text: 'Nunavut' },
+        { value: 'ON', text: 'Ontario' },
+        { value: 'PE', text: 'Prince Edward Island' },
+        { value: 'QC', text: 'Quebec' },
+        { value: 'SK', text: 'Saskatchewan' },
+        { value: 'YT', text: 'Yukon' }
+      ]
     }
   },
   created () {
@@ -489,7 +498,7 @@ export default {
           address: this.newBilling.address,
           postal_code: this.newBilling.postal_code,
           phone: this.newBilling.phone,
-          province: this.newBilling.province,
+          province: this.selected_province,
           city: this.newBilling.city,
           merchant_id: this.merchant.id
         }
@@ -550,7 +559,7 @@ export default {
           address: billing.address,
           postal_code: billing.postal_code,
           phone: billing.phone,
-          province: billing.province,
+          province: this.selected_province,
           city: billing.city,
           merchant_id: billing.merchant
         }
