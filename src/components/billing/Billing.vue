@@ -447,7 +447,7 @@ export default {
       toastCount: 0,
       selected_province: null,
       options: [
-        { value: null, text: 'Please select a province', disabled: true },
+        { value: null, text: 'Select a Province', disabled: true },
         { value: 'AB', text: 'Alberta' },
         { value: 'BC', text: 'British Columbia' },
         { value: 'MB', text: 'Manitoba' },

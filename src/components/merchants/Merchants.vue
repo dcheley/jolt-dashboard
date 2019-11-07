@@ -293,7 +293,7 @@ export default {
       rating: 0,
       selected: null,
       options: [
-        { value: null, text: 'Please select a category', disabled: true },
+        { value: null, text: 'Select a category', disabled: true },
         { value: 'Activities', text: 'Activities' },
         { value: 'Food and Drinks', text: 'Food & Drinks' },
         { value: 'Screenings', text: 'Screenings' },

@@ -96,7 +96,7 @@
 
         <b-row>
           <b-col cols="12">
-            <b-button pill type="submit" value="Add Advertisement" class="mb-5">Add Advertisement</b-button>
+            <b-button pill type="submit" value="Add" class="mb-5">Add</b-button>
           </b-col>
         </b-row>
       </b-form>

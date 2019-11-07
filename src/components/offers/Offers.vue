@@ -84,7 +84,7 @@
 
           <b-col cols="12">
             <p class="">Don't see a merchant? <router-link class="custom-purple text-decoration-none" to="/merchants">Create one.</router-link></p>
-            <b-button pill type="submit" value="Add Offer" class="mb-5">Add Offer</b-button>
+            <b-button pill type="submit" value="Add" class="mb-5">Add</b-button>
           </b-col>
         </b-row>
       </b-form>

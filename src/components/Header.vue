@@ -11,25 +11,25 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-navbar-nav>
-            <b-nav-item to="/" class="" v-if="!signedIn()">Sign In</b-nav-item>
-            <b-nav-item to="/signup" class="" v-if="!signedIn()">Sign Up</b-nav-item>
-            <b-nav-item to="/admin-home" class="" v-if="signedIn()">Home</b-nav-item>
-            <b-nav-item to="/merchants" class="" v-if="signedIn()">Merchants</b-nav-item>
+            <b-nav-item to="/" v-if="!signedIn()">Sign In</b-nav-item>
+            <b-nav-item to="/signup" v-if="!signedIn()">Sign Up</b-nav-item>
+            <b-nav-item to="/admin-home" v-if="signedIn()">Home</b-nav-item>
+            <b-nav-item to="/merchants" v-if="signedIn()">Merchants</b-nav-item>
             <b-nav-item-dropdown text="Profiles" v-if="signedIn()">
               <b-dropdown-item v-for="merchant in merchants"
                 :key="merchant.id"
                 :merchant="merchant"
                 v-bind:to="'/merchants/' + merchant.id"
-                class="">
+              >
                 {{ merchant.name }}
               </b-dropdown-item>
             </b-nav-item-dropdown>
-            <b-nav-item to="/search-merchants" class="" v-if="signedIn()">Search</b-nav-item>
-            <b-nav-item to="/category-merchants" class="" v-if="signedIn()">Categories</b-nav-item>
-            <b-nav-item to="/offers" class="" v-if="signedIn()">Offers</b-nav-item>
-            <b-nav-item to="/events" class="" v-if="signedIn()">Events</b-nav-item>
-            <b-nav-item to="/post-feedback" class="" v-if="signedIn()">Feedback</b-nav-item>
-            <b-nav-item to="#" @click.prevent="signOut" class="" v-if="signedIn()">Sign Out</b-nav-item>
+            <b-nav-item to="/search-merchants" v-if="signedIn()">Search</b-nav-item>
+            <b-nav-item to="/category-merchants" v-if="signedIn()">Categories</b-nav-item>
+            <b-nav-item to="/offers" v-if="signedIn()">Offers</b-nav-item>
+            <b-nav-item to="/events" v-if="signedIn()">Events</b-nav-item>
+            <b-nav-item to="/post-feedback" v-if="signedIn()">Feedback</b-nav-item>
+            <b-nav-item to="#" @click.prevent="signOut" v-if="signedIn()">Sign Out</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>

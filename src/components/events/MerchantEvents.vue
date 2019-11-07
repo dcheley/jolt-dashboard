@@ -63,6 +63,19 @@
 
           <b-col sm="12" md="6">
             <b-form-group
+              id="input-group-occurrence"
+              label-align="left"
+              label="Occurrence"
+              label-for="occurrence"
+              class="mt-3 mb-5"
+            >
+              <b-form-select v-model="selected_occurrence" :options="options" required></b-form-select>
+            </b-form-group>
+          </b-col>
+
+          <b-col md="2"></b-col>
+          <b-col sm="12" md="8">
+            <b-form-group
               id="input-group-offer"
               label-cols-sm="4"
               label-cols-lg="3"
@@ -75,13 +88,18 @@
                 <option disabled value="">Offer</option>
                 <option :value="offer.id" v-for="offer in offers" :key="offer.id">{{ offer.title }}</option>
               </b-form-select>
-
-              <b-button pill type="submit" value="Post" class="mt-3">Post</b-button>
             </b-form-group>
           </b-col>
-
-          <b-col sm="3"></b-col>
+          <b-col md="2"></b-col>
         </b-row>
+
+        <b-row>
+          <b-col cols="12">
+            <p class="">Don't see an offer? <router-link class="custom-purple text-decoration-none" to="/offers">Create one.</router-link></p>
+            <b-button pill type="submit" value="Post" class="mt-3">Post</b-button>
+          </b-col>
+        </b-row>
+
       </b-form>
     </div>
 
@@ -154,8 +172,11 @@
                   <datetime type="datetime" v-model="event.end_time" use12-hour></datetime>
                 </b-form-group>
               </b-col>
+            </b-row>
 
-              <b-col sm="12" md="6">
+            <b-row>
+              <b-col md="1"></b-col>
+              <b-col sm="12" md="5">
                 <b-form-group
                   id="input-group-event-description"
                   label-align="left"
@@ -174,7 +195,7 @@
                 </b-form-group>
               </b-col>
 
-              <b-col sm="12" md="6">
+              <b-col sm="12" md="5">
                 <b-form-group
                   id="input-group-offer"
                   label-cols-sm="4"
@@ -188,10 +209,25 @@
                     <option disabled value="">Offer</option>
                     <option :value="offer.id" v-for="offer in offers" :key="offer.id">{{ offer.title }}</option>
                   </b-form-select>
-
-                  <b-button pill type="submit" value="Post" class="mt-3">Post</b-button>
                 </b-form-group>
               </b-col>
+              <b-col md="1"></b-col>
+            </b-row>
+
+            <b-row>
+              <b-col md="2"></b-col>
+              <b-col sm="12" md="8">
+                <b-form-group
+                  id="input-group-occurrence"
+                  label-align="left"
+                  label="Occurrence"
+                  label-for="occurrence"
+                  class="mt-3 mb-5"
+                >
+                  <b-form-select v-model="selected_occurrence" :options="options" required></b-form-select>
+                </b-form-group>
+              </b-col>
+              <b-col md="2"></b-col>
             </b-row>
 
             <b-row>
@@ -226,8 +262,16 @@ export default {
       events: [],
       offers: [],
       newEvent: [],
+      editedEvent: '',
       error: '',
-      toastCount: 0
+      toastCount: 0,
+      selected_occurrence: null,
+      options: [
+        { value: null, text: 'Select an occurrence rate', disabled: true },
+        { value: 'Weekly', text: 'Weekly' },
+        { value: 'Bi-weekly', text: 'Bi-weekly' },
+        { value: 'Monthly', text: 'Monthly' }
+      ]
     }
   },
   created () {
@@ -241,10 +285,6 @@ export default {
 
       this.$http.secured.get('/api/v1/merchants/' + merchantId)
         .then(response => { this.merchant = response.data })
-        .catch(error => this.setError(error, 'Something went wrong'))
-
-      this.$http.secured.get('/api/v1/events')
-        .then(response => { this.events = response.data })
         .catch(error => this.setError(error, 'Something went wrong'))
 
       this.$http.secured.get(`/api/v1/offers`)
@@ -266,7 +306,8 @@ export default {
           start_time: this.newEvent.start,
           end_time: this.newEvent.end,
           description: this.newEvent.description,
-          offer_id: this.newEvent.offer
+          offer_id: this.newEvent.offer,
+          occurrence: this.selected_occurrence
         }
       })
         .then(response => {
@@ -329,7 +370,8 @@ export default {
           description: event.description,
           start_time: event.start_time,
           end_time: event.end_time,
-          offer_id: event.offer.id
+          offer_id: event.offer.id,
+          occurrence: this.selected_occurrence
         }
       })
         .catch(error => this.setError(error, 'Failed to update event'))
