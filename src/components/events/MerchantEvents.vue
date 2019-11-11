@@ -82,9 +82,9 @@
               label-align="left"
               label="Offer"
               label-for="event_offer"
-              class="mt-5 mb-5"
+              class="mt-3 mb-5"
             >
-              <b-form-select id="offer" class="select" v-model="newEvent.offer">
+              <b-form-select id="offer" class="select" v-model="newEvent.offer" required>
                 <option disabled value="">Offer</option>
                 <option :value="offer.id" v-for="offer in offers" :key="offer.id">{{ offer.title }}</option>
               </b-form-select>
@@ -163,7 +163,7 @@
                 <b-form-group
                   id="input-group-event-end"
                   label-cols-sm="4"
-                  label-cols-lg="2"
+                  label-cols-lg="2"cd
                   label-align="left"
                   label="End time"
                   label-for="event_end"
@@ -203,9 +203,9 @@
                   label-align="left"
                   label="Offer"
                   label-for="event_offer"
-                  class="mt-5 mb-5"
+                  class="mt-3 mb-5"
                 >
-                  <b-form-select id="offer" class="select" v-model="event.offer">
+                  <b-form-select id="offer" class="select" v-model="event.offer" required>
                     <option disabled value="">Offer</option>
                     <option :value="offer.id" v-for="offer in offers" :key="offer.id">{{ offer.title }}</option>
                   </b-form-select>
@@ -268,6 +268,7 @@ export default {
       selected_occurrence: null,
       options: [
         { value: null, text: 'Select an occurrence rate', disabled: true },
+        { value: 'none', text: 'None' },
         { value: 'Weekly', text: 'Weekly' },
         { value: 'Bi-weekly', text: 'Bi-weekly' },
         { value: 'Monthly', text: 'Monthly' }

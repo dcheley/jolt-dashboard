@@ -1,6 +1,6 @@
 # merchant-dashboard-frontend
 
-> A Vue.js front-end app for a Merchant Dashboard connected to a Rails API backend app.
+> A Vue.js front-end app for a Merchant Dashboard connected to a Rails API backend app (https://github.com/dcheley/jolt-api).
 
 ## Build Setup
 
