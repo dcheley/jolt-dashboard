@@ -16,7 +16,7 @@
     "@progress/kendo-scheduler-vue-wrapper": "^2019.3.917",
     "@progress/kendo-theme-default": "^4.3.2",
     "@progress/kendo-ui": "^2019.3.917",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.27",
     "chart.js": "^2.8.0",
